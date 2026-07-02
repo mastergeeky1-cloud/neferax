@@ -104,7 +104,7 @@ def write_tool_report(tool_name, target, cmd, stdout, stderr, exit_code, duratio
     fpath = _make_report_path(tool_name)
     status = "pass" if exit_code == 0 else ("timeout" if exit_code == -1 else "fail")
     badge = f'<span class="badge badge-{"green" if exit_code==0 else ("yellow" if exit_code==-1 else "red")}">{"PASS" if exit_code==0 else ("TIMEOUT" if exit_code==-1 else "FAIL")}</span>'
-    methods_str = ", ".join(methods) if methods else "\u2014"
+    methods_str = ", ".join(methods) if methods else "--"
     output = (stdout + stderr).strip() or "(no output)"
 
     body = [
@@ -135,7 +135,8 @@ def write_chain_report(chain_name, target, results):
         cls = "green" if r["exit_code"] == 0 else ("yellow" if r["exit_code"] == -1 else "red")
         lbl = "PASS" if r["exit_code"] == 0 else ("TIMEOUT" if r["exit_code"] == -1 else "FAIL")
         rp = r.get("report_path", "")
-        link = f'<a href="{rp.name}">\ud83d\udcc4 view</a>' if rp else "\u2014"
+        if isinstance(rp, str): rp = Path(rp) if rp else None
+        link = f'<a href="{rp.name}">[view] view</a>' if rp else "--"
         rows += f'<tr class="tool-row"><td>{r["tool"]}</td>'
         rows += f'<td>{r["target"]}</td>'
         rows += f'<td>{_timefmt(r["duration_ms"])}</td>'
@@ -179,6 +180,7 @@ def write_report_index():
 
 # ── Permission & Installation Checking ─────────────────────────────────
 SUDO_REQUIRED = {
+    "naabu",
     "aircrack","airodump","aireplay","airmon","arp-scan","bettercap","bully",
     "chntpw","cowpatty","ettercap","evil-winrm","hashcat","hydra","john",
     "kismet","macchanger","masscan","mdk4","medusa","nbtscan","ncrack",
@@ -200,7 +202,7 @@ def check_tool(tool_name):
 def run(tool_name, target="", desc=None):
     if tool_name not in TOOLS:
         log("-", f"Unknown tool: {tool_name}")
-        return -1, 0
+        return -1, 0, ""
 
     info = TOOLS[tool_name]
     raw_cmd = info["cmd"]
@@ -210,10 +212,10 @@ def run(tool_name, target="", desc=None):
 
     if not installed and binary:
         log("!", f"'{binary}' not installed. Install: sudo apt install {binary}")
-        return -1, 0
+        return -1, 0, ""
 
     if needs_sudo and os.geteuid() != 0:
-        log("*", f"{Y}{tool_name}{X} needs root — prepending sudo")
+        log("*", f"{Y}{tool_name}{X} needs root -- prepending sudo")
         cmd = f"sudo {cmd}"
 
     print(f"  {R}\u2554{'\u2550'*BW}\u2557{X}")
@@ -589,7 +591,8 @@ def run_chain(name, target):
 
     if name == "full":
         for sub in ["scan","recon","web","osint","ad","exploit","brute","sql","password","cloud","container","mobile","wireless"]:
-            run_chain(sub, target)
+            if sub != name:
+                run_chain(sub, target)
 
     elapsed = (time.time() - start) * 1000
     box_end()
@@ -620,7 +623,7 @@ def do_list():
 
 def do_help():
     logo()
-    box_start("NEFERAX \u2014 Dark Security Framework", sep=True)
+    box_start("NEFERAX -- Dark Security Framework", sep=True)
     box_line(f"{D}Usage:  {C}nefereax <command> [options] <target>{X}", D)
     box_line("")
     box_line(f"{S('ATTACK CHAINS:')}", R)
@@ -713,7 +716,7 @@ def do_unknown(cmd):
 def root_check():
     if os.geteuid() != 0:
         sudo_cmd = "sudo " + sys.executable + " " + " ".join(sys.argv)
-        log("!", f"Not running as root — {Y}{len(SUDO_REQUIRED)}{X} tools need root privileges")
+        log("!", f"Not running as root -- {Y}{len(SUDO_REQUIRED)}{X} tools need root privileges")
         log("*", f"Re-run: {C}sudo {' '.join(sys.argv)}{X}")
         print()
         return False
