@@ -230,12 +230,10 @@ def run(tool_name, target="", desc=None):
     exit_code = 0
     try:
         p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE, universal_newlines=True, bufsize=1)
+                             stderr=subprocess.STDOUT, universal_newlines=True, bufsize=1)
         for line in p.stdout:
             print(f"  {W}  {line}", end='')
             stdout_buf.append(line)
-        for line in p.stderr:
-            stderr_buf.append(line)
         p.wait()
         exit_code = p.returncode
     except KeyboardInterrupt:
@@ -254,7 +252,7 @@ def run(tool_name, target="", desc=None):
 
     # Generate HTML report
     stdout_str = "".join(stdout_buf)
-    stderr_str = "".join(stderr_buf)
+    stderr_str = ""
     rpath = write_tool_report(tool_name, target or "(none)", cmd, stdout_str, stderr_str,
                               exit_code, duration_ms, info.get("methods"))
     log("*", f"Report: {rpath}")
