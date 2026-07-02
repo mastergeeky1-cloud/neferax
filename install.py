@@ -16,7 +16,6 @@ if sys.version_info < (3, 10):
 
 from rich.console import Console
 from rich.panel import Panel
-from rich.prompt import Confirm
 from rich.progress import Progress, SpinnerColumn, TextColumn
 from rich.text import Text
 from rich import box
@@ -71,11 +70,8 @@ def install_prerequisites():
 
 def clone_repo():
     if APP_INSTALL_DIR.exists():
-        console.print(f"[yellow]{APP_INSTALL_DIR} already exists.[/yellow]")
-        if not Confirm.ask("Replace it?", default=False):
-            console.print("[red]Installation aborted.[/red]")
-            sys.exit(1)
-        shutil.rmtree(str(APP_INSTALL_DIR))
+        console.print(f"[green]✔ {APP_INSTALL_DIR} already present — skipping clone[/green]")
+        return
     console.print(f"[dim]Cloning from {REPO_URL}...[/dim]")
     result = subprocess.run(
         ["git", "clone", "--depth", "1", REPO_URL, str(APP_INSTALL_DIR)],
@@ -128,6 +124,8 @@ def main():
         box=box.DOUBLE, border_style="bright_red",
     ))
     console.print()
+
+    non_interactive = len(sys.argv) > 1 and sys.argv[1] == "1"
 
     check_root()
     install_prerequisites()

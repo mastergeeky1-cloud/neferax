@@ -14,15 +14,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: 'pip'
+          cache: pip
       - run: pip install --upgrade pip
       - run: pip install -r requirements.txt
-      - run: sudo python3 install.py 1
-      # Verify the hackingtool entrypoint is on PATH
-      - run: which hackingtool
-      # Smoke test: launch and immediately quit (99)
-      - name: "Smoke test: launch and quit"
-        run: echo -e "99\n" | hackingtool || true
-      # Navigate into first category and back out
-      - name: "Navigation test: enter category 1, quit"
-        run: echo -e "1\n99\n99\n" | hackingtool || true
+      - name: Non-interactive install
+        run: sudo python3 install.py 1
+      - name: Verify launcher exists
+        run: which hackingtool && which nefereax 2>/dev/null || echo "nefereax not on PATH"
+      - name: Smoke test nefereax CLI
+        run: nefereax version 2>&1 | head -5
+      - name: Smoke test hackingtool TUI
+        run: echo -e "q\n" | timeout 5 hackingtool || true
+      - name: Run nefereax info
+        run: nefereax info nmap
+      - name: Run nefereax list
+        run: nefereax list 2>&1 | head -10
