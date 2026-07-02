@@ -28,7 +28,7 @@ def logo():
     print(f"  {R}\u2554{'\u2550'*BW}\u2557{X}")
     print(LOGO, end='')
     print(f"  {R}\u255a{'\u2550'*BW}\u255d{X}")
-    sub = f"Dark Security Framework  v{V}  |  {S(f'{len(TOOLS)} tools',C)}  |  {S(f'{len(CHAINS)} chains',Y)}"
+    sub = f"Dark Security Framework  v{V}  |  {S(str(len(TOOLS))+" tools",C)}  |  {S(str(len(CHAINS))+" chains",Y)}"
     print(f"  {D}\u2554{'\u2550'*BW}\u2557{X}")
     print(f"  {D}\u2551  {sub}{' '*(BW - len(sub) - 4)}{D}\u2551{X}")
     print(f"  {D}\u255a{'\u2550'*BW}\u255d{X}")
@@ -213,7 +213,7 @@ def run(tool_name, target="", desc=None):
         return -1, 0
 
     if needs_sudo and os.geteuid() != 0:
-        log("*", f"Requires root — prepending sudo")
+        log("*", f"{Y}{tool_name}{X} needs root — prepending sudo")
         cmd = f"sudo {cmd}"
 
     print(f"  {R}\u2554{'\u2550'*BW}\u2557{X}")
@@ -468,6 +468,64 @@ tool("webshells","webshells","misc","Web shell collection",
 tool("laudanum","laudanum","misc","Web shell injection kit",
      methods=["webshell","file_upload","reverse_shell"])
 
+# ── CLOUD ──
+tool("s3scanner","s3scanner -bucket <target>","cloud","Find open S3 buckets",
+     methods=["cloud_enum","s3_disclosure","bucket_find"])
+tool("prowler","prowler <target>","cloud","AWS security auditing",
+     methods=["cloud_audit","aws_audit","compliance","iam_audit"])
+tool("scoutsuite","scoutsuite <target>","cloud","Multi-cloud security scanner",
+     methods=["cloud_audit","aws_audit","azure_audit","gcp_audit"])
+tool("tfsec","tfsec <dir>","cloud","Terraform security scanner",
+     methods=["iac_scan","terraform_audit","misconfig"])
+tool("checkov","checkov -d <dir>","cloud","IaC misconfiguration scanner",
+     methods=["iac_scan","misconfig","compliance","infra_audit"])
+tool("cloudsploit","cloudsploit <target>","cloud","Cloud security scanning",
+     methods=["cloud_audit","aws_audit","azure_audit"])
+
+# ── CONTAINER ──
+tool("trivy","trivy image <target>","container","Container vulnerability scanner",
+     methods=["container_scan","vuln_scan","image_audit"])
+tool("kubectl","kubectl get pods","container","Kubernetes CLI",
+     methods=["k8s_mgmt","pod_enum","cluster_audit"])
+tool("kubescape","kubescape scan <target>","container","K8s security scanning",
+     methods=["k8s_audit","cluster_scan","compliance","misconfig"])
+tool("kube-hunter","kube-hunter","container","K8s penetration testing",
+     methods=["k8s_audit","cluster_recon","vuln_scan"])
+tool("dockle","dockle <image>","container","Dockerfile linter",
+     methods=["docker_audit","image_lint","best_practice"])
+tool("hadolint","hadolint <dockerfile>","container","Dockerfile linting",
+     methods=["dockerfile_lint","best_practice"])
+
+# ── MOBILE ──
+tool("apktool","apktool d <apk>","mobile","APK reverse engineering",
+     methods=["apk_decompile","smali","reverse"])
+tool("dex2jar","d2j-dex2jar <dex>","mobile","DEX to JAR converter",
+     methods=["dex_decompile","java_reverse"])
+tool("jadx","jadx <apk>","mobile","Dex to Java decompiler",
+     methods=["apk_decompile","java_decompile","reverse"])
+tool("objection","objection -g <package> explore","mobile","Runtime mobile exploration",
+     methods=["mobile_explore","runtime_inject","ssl_bypass","frida"])
+tool("mobsf","mobsf","mobile","Mobile security framework",
+     methods=["mobile_scan","apk_analyze","ipa_analyze","static_analyze","dynamic_analyze"])
+
+# ── ADVANCED ──
+tool("bloodhound","bloodhound","advanced","AD attack path mapping",
+     methods=["ad_enum","attack_path","ldap_enum","acl_analyze","graph_analyze"])
+tool("certipy","certipy find -u <user> -p <pass> -dc-ip <target>","advanced","AD CS exploitation",
+     methods=["adcs_enum","cert_abuse","esc_attack","pkinit"])
+tool("kerbrute","kerbrute userenum -d <domain> <wordlist> <target>","advanced","Kerberos user enumeration",
+     methods=["kerberos_enum","user_enum","asrep_roast","password_spray"])
+tool("nuclei","nuclei -u <target>","advanced","Fast YAML-based vulnerability scanner",
+     methods=["vuln_scan","cve_scan","template_scan","fuzz","tech_detect"])
+tool("gospider","gospider -s <target>","advanced","Web spider/crawler",
+     methods=["web_crawl","spider","link_extract","js_analyze"])
+tool("httpx","httpx -u <target>","recon","HTTP probing toolkit",
+     methods=["http_probe","tech_detect","status_check","title_scan"])
+tool("subfinder","subfinder -d <domain>","recon","Subdomain discovery",
+     methods=["subdomain_enum","osint","passive_recon"])
+tool("naabu","naabu -host <target>","recon","Fast port scanner",
+     methods=["port_scan","fast_scan","syn_scan","service_detect"])
+
 # ── Categories ─────────────────────────────────────────────────────────
 CATS = [
     ("RECON",    [n for n,v in TOOLS.items() if v["cat"]=="recon"]),
@@ -476,6 +534,10 @@ CATS = [
     ("PASSWORD", [n for n,v in TOOLS.items() if v["cat"]=="password"]),
     ("WIRELESS", [n for n,v in TOOLS.items() if v["cat"]=="wireless"]),
     ("AD/WIN",   [n for n,v in TOOLS.items() if v["cat"]=="ad"]),
+    ("CLOUD",    [n for n,v in TOOLS.items() if v["cat"]=="cloud"]),
+    ("CONTAINER",[n for n,v in TOOLS.items() if v["cat"]=="container"]),
+    ("MOBILE",   [n for n,v in TOOLS.items() if v["cat"]=="mobile"]),
+    ("ADVANCED", [n for n,v in TOOLS.items() if v["cat"]=="advanced"]),
     ("TUNNEL",   [n for n,v in TOOLS.items() if v["cat"]=="tunnel"]),
     ("MITM",     [n for n,v in TOOLS.items() if v["cat"]=="mitm"]),
     ("TRAFFIC",  [n for n,v in TOOLS.items() if v["cat"]=="traffic"]),
@@ -484,17 +546,20 @@ CATS = [
 ]
 
 CHAINS = {
-    "scan":     ("Quick vulnerability scan",                 ["nmap", "gobuster", "nikto"]),
-    "recon":    ("Full reconnaissance",                      ["theharvester","dnsrecon","nmap","masscan","enum4linux","netexec"]),
-    "web":      ("Web application attack",                   ["whatweb","nikto","wpscan","dirb","gobuster","ffuf","sqlmap"]),
-    "exploit":  ("Exploitation chain",                       ["searchsploit","nmap","hydra"]),
+    "scan":     ("Quick vulnerability scan",                 ["nmap","naabu","gobuster","nikto"]),
+    "recon":    ("Full reconnaissance",                      ["theharvester","subfinder","dnsrecon","nmap","masscan","httpx","naabu","enum4linux","netexec"]),
+    "web":      ("Web application attack",                   ["whatweb","nikto","wpscan","gospider","dirb","gobuster","ffuf","sqlmap","nuclei"]),
+    "exploit":  ("Exploitation chain",                       ["searchsploit","nmap","nuclei","hydra"]),
     "brute":    ("Brute force (ssh ftp http mysql smb)",     []),
-    "osint":    ("OSINT gathering",                          ["theharvester","dnsrecon","dnsenum","fierce","amass","cewl"]),
-    "ad":       ("Active Directory",                         ["enum4linux","netexec","smbmap","responder"]),
-    "wireless": ("Wireless attacks",                         ["airmon","airodump","aireplay","aircrack","wifite","reaver"]),
-    "password": ("Password cracking",                        ["hashid","hashcat","john","crunch","cewl"]),
-    "sql":      ("SQL injection",                            ["sqlmap"]),
-    "full":     ("Full attack chain (recon+web+exploit+brute)",[]),
+    "osint":    ("OSINT gathering",                          ["theharvester","subfinder","dnsrecon","dnsenum","fierce","amass","cewl","httpx"]),
+    "ad":       ("Active Directory",                         ["enum4linux","netexec","smbmap","responder","bloodhound","certipy","kerbrute"]),
+    "wireless": ("Wireless attacks",                         ["airmon","airodump","aireplay","aircrack","wifite","reaver","kismet"]),
+    "password": ("Password cracking",                        ["hashid","hashcat","john","crunch","cewl","pipal"]),
+    "sql":      ("SQL injection",                            ["sqlmap","nuclei"]),
+    "cloud":    ("Cloud security audit",                     ["s3scanner","prowler","scoutsuite","tfsec","checkov","cloudsploit"]),
+    "container":("Container security audit",                 ["trivy","kubectl","kubescape","kube-hunter","dockle","hadolint"]),
+    "mobile":   ("Mobile app security",                      ["apktool","dex2jar","jadx","objection","mobsf"]),
+    "full":     ("Full attack chain (all categories)",       []),
 }
 
 # ── Chain Runner ───────────────────────────────────────────────────────
@@ -523,7 +588,7 @@ def run_chain(name, target):
                             "duration_ms": dur, "report_path": rp})
 
     if name == "full":
-        for sub in ["recon","web","exploit","brute"]:
+        for sub in ["scan","recon","web","osint","ad","exploit","brute","sql","password","cloud","container","mobile","wireless"]:
             run_chain(sub, target)
 
     elapsed = (time.time() - start) * 1000
@@ -565,7 +630,7 @@ def do_help():
     box_line(f"{S('COMMANDS:')}", R)
     for c_, d_ in [("list","List all tools with methods"),("search <q>","Search tools"),
                    ("info <t>","Tool details"),("reports","Open report index"),
-                   ("menu","Interactive TUI"),("version","Show version")]:
+                   ("menu","Interactive TUI"),("version","Show version"),("sudo nefereax","Run as root for all tools")]:
         box_line(f"  {S(c_):14}{d_}")
     box_line("")
     box_line(f"{S('FILTER:')}", R)
@@ -575,14 +640,15 @@ def do_help():
     for c_, d_ in [("nefereax scan 10.10.10.1","Quick scan + HTML report"),
                    ("nefereax full 192.168.1.0/24","Full chain + aggregated report"),
                    ("nefereax search --method sqli","Search by attack method"),
-                   ("nefereax reports","Open HTML report index")]:
+                   ("nefereax reports","Open HTML report index"),("sudo nefereax scan 10.10.10.1","Scan with root privileges")]:
         box_line(f"  {D}{c_:35}{X}  {d_}")
     box_end()
 
 def do_version():
     logo()
     box_start(f"Nefereax v{V}  |  Dark Security Framework")
-    box_line(f"  {D}{len(TOOLS)} tools  |  {len(CHAINS)} attack chains{X}")
+    tcnt = str(len(TOOLS)); ccnt = str(len(CHAINS))
+    box_line(f"  {D}{tcnt} tools  |  {ccnt} attack chains{X}")
     box_line(f"  {D}Reports: {REPORTS_DIR}{X}")
     box_end()
 
@@ -643,12 +709,28 @@ def do_unknown(cmd):
     box_line(f"  {D}Run 'nefereax --help' for usage{X}")
     box_end()
 
+# ── Root Check ─────────────────────────────────────────────────────────
+def root_check():
+    if os.geteuid() != 0:
+        sudo_cmd = "sudo " + sys.executable + " " + " ".join(sys.argv)
+        log("!", f"Not running as root — {Y}{len(SUDO_REQUIRED)}{X} tools need root privileges")
+        log("*", f"Re-run: {C}sudo {' '.join(sys.argv)}{X}")
+        print()
+        return False
+    return True
+
 # ── Main ───────────────────────────────────────────────────────────────
 def main():
     if len(sys.argv) < 2 or sys.argv[1] in ("-h","--help","help"):
         do_help(); return 0
 
     cmd = sys.argv[1]
+    SKIP_ROOT = ("version", "help", "list", "search", "info", "reports", "menu", "-h", "--help")
+    if cmd not in SKIP_ROOT and cmd not in TOOLS and cmd not in CHAINS:
+        pass
+    elif cmd not in SKIP_ROOT:
+        if not root_check():
+            log("!", f"Some tools will fail without root. Use {C}sudo nefereax {cmd}{X}")
     if cmd == "version": do_version(); return 0
     if cmd == "menu": os.execv("/usr/bin/hackingtool", ["hackingtool"])
     if cmd == "list": do_list(); return 0
