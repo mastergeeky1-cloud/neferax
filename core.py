@@ -1,6 +1,7 @@
 import os
 import shutil
 import sys
+import subprocess
 import webbrowser
 from collections.abc import Callable
 from platform import system
