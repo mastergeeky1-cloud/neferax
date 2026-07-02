@@ -96,13 +96,14 @@ def create_venv():
 
 
 def create_launcher(venv_path):
-    launcher_content = f'''#!/bin/bash
-source "{venv_path}/bin/activate"
-python3 "{APP_INSTALL_DIR / 'hackingtool.py'}" "$@"
-'''
-    APP_BIN_PATH.write_text(launcher_content)
-    APP_BIN_PATH.chmod(0o755)
-    console.print(f"[green]✔ Launcher installed at {APP_BIN_PATH}[/green]")
+    launcher_dir = Path("/usr/bin")
+    for name, entry in [("hackingtool","hackingtool.py"),("nefereax","nefereax_cli.py"),("neferax","nefereax_cli.py")]:
+        l = launcher_dir / name
+        l.write_text('#!/bin/bash\n'
+            'source "' + str(venv_path) + '/bin/activate"\n'
+            'python3 "' + str(APP_INSTALL_DIR / entry) + '" "$@"\n')
+        l.chmod(0o755)
+        console.print(f"[green]✔ Launcher installed at {l}[/green]")
 
 
 def setup_user_config():
