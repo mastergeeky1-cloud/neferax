@@ -97,7 +97,7 @@ def create_venv():
 
 def create_launcher(venv_path):
     launcher_dir = Path("/usr/bin")
-    for name, entry in [("hackingtool","hackingtool.py"),("nefereax","nefereax_cli.py"),("neferax","nefereax_cli.py")]:
+    for name, entry in [("neferax","neferax_tui.py"),("nefereax","neferax_cli.py"),("neferax","neferax_cli.py")]:
         l = launcher_dir / name
         l.write_text('#!/bin/bash\n'
             'source "' + str(venv_path) + '/bin/activate"\n'
@@ -121,7 +121,7 @@ def setup_user_config():
 def main():
     console.print()
     console.print(Panel(
-        Text(f"Nefereax DarkAx Installer  {VERSION_DISPLAY}", style="bold red"),
+        Text(f"Neferax Dark Installer  {VERSION_DISPLAY}", style="bold red"),
         box=box.DOUBLE, border_style="bright_red",
     ))
     console.print()
@@ -137,7 +137,7 @@ def main():
 
     console.print()
     console.print("[bold green]  ✔  Installation complete![/bold green]")
-    console.print("  Type [bold cyan]hackingtool[/bold cyan] to start.")
+    console.print("  Type [bold cyan]neferax[/bold cyan] to start.")
     console.print()
 
 

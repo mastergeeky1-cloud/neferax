@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Regenerate README.md from hackingtool's internal tool metadata.
+Regenerate README.md from neferax's internal tool metadata.
 """
 import os
 import sys
@@ -9,8 +9,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from rich.console import Console
 from rich.theme import Theme
-from core import HackingToolsCollection
-from hackingtool import AllTools
+from core import NeferaxToolsCollection
+from neferax import AllTools
 
 _theme = Theme({"purple": "#FF4444"})
 console = Console(theme=_theme)
@@ -24,13 +24,13 @@ HEADER = """\
 
 <p><b>All-in-One Hacking Tool for Security Researchers & Pentesters</b></p>
 
-[![License](https://img.shields.io/github/license/Nefereax/hackingtool)](LICENSE)&nbsp;
+[![License](https://img.shields.io/github/license/Nefereax/neferax)](LICENSE)&nbsp;
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)&nbsp;
 [![Version](https://img.shields.io/badge/v2.0.0-FF4444?style=flat-square)](#)&nbsp;
-[![Stars](https://img.shields.io/github/stars/Nefereax/hackingtool?style=flat-square&color=red)](https://github.com/Nefereax/hackingtool/stargazers)&nbsp;
-[![Forks](https://img.shields.io/github/forks/Nefereax/hackingtool?style=flat-square&color=red)](https://github.com/Nefereax/hackingtool/network/members)&nbsp;
-[![Issues](https://img.shields.io/github/issues/Nefereax/hackingtool?style=flat-square&color=red)](https://github.com/Nefereax/hackingtool/issues)&nbsp;
-[![Last Commit](https://img.shields.io/github/last-commit/Nefereax/hackingtool?style=flat-square&color=FF4444)](https://github.com/Nefereax/hackingtool/commits/master)
+[![Stars](https://img.shields.io/github/stars/Nefereax/neferax?style=flat-square&color=red)](https://github.com/Nefereax/neferax/stargazers)&nbsp;
+[![Forks](https://img.shields.io/github/forks/Nefereax/neferax?style=flat-square&color=red)](https://github.com/Nefereax/neferax/network/members)&nbsp;
+[![Issues](https://img.shields.io/github/issues/Nefereax/neferax?style=flat-square&color=red)](https://github.com/Nefereax/neferax/issues)&nbsp;
+[![Last Commit](https://img.shields.io/github/last-commit/Nefereax/neferax?style=flat-square&color=FF4444)](https://github.com/Nefereax/neferax/commits/master)
 
 ![](https://img.shields.io/badge/20_Categories-7B61FF?style=for-the-badge)
 ![](https://img.shields.io/badge/185+_Tools-FF4444?style=for-the-badge)
@@ -39,7 +39,7 @@ HEADER = """\
 
 <a href="#installation"><img src="https://img.shields.io/badge/Install_Now-FF4444?style=for-the-badge&logo=rocket&logoColor=black" alt="Install Now"></a>&nbsp;
 <a href="#quick-commands"><img src="https://img.shields.io/badge/Quick_Commands-7B61FF?style=for-the-badge&logo=terminal&logoColor=white" alt="Quick Commands"></a>&nbsp;
-<a href="https://github.com/Nefereax/hackingtool/issues/new?template=tool_request.md"><img src="https://img.shields.io/badge/Suggest_a_Tool-FF61DC?style=for-the-badge&logo=plus&logoColor=white" alt="Suggest a Tool"></a>
+<a href="https://github.com/Nefereax/neferax/issues/new?template=tool_request.md"><img src="https://img.shields.io/badge/Suggest_a_Tool-FF61DC?style=for-the-badge&logo=plus&logoColor=white" alt="Suggest a Tool"></a>
 
 </div>
 
@@ -75,10 +75,10 @@ QUICK_CMDS = """\
 
 | Action | Command |
 |---|---|
-| Install | `curl -sSL https://raw.githubusercontent.com/Nefereax/hackingtool/master/install.sh | sudo bash` |
-| Run | `hackingtool` |
-| Update | `hackingtool` → `Update / Uninstall` → `Update Nefereax` |
-| Uninstall | `hackingtool` → `Update / Uninstall` → `Uninstall Nefereax` |
+| Install | `curl -sSL https://raw.githubusercontent.com/Nefereax/neferax/master/install.sh | sudo bash` |
+| Run | `neferax` |
+| Update | `neferax` → `Update / Uninstall` → `Update Nefereax` |
+| Uninstall | `neferax` → `Update / Uninstall` → `Uninstall Nefereax` |
 
 ---
 
@@ -86,7 +86,7 @@ QUICK_CMDS = """\
 """
 
 
-def generate_table(cat: HackingToolsCollection) -> str:
+def generate_table(cat: NeferaxToolsCollection) -> str:
     rows = []
     tools = cat.TOOLS
     for i in range(0, len(tools), TOOLS_PER_ROW):
@@ -108,7 +108,7 @@ def main():
     lines = [HEADER, QUICK_CMDS]
 
     for cat in AllTools().TOOLS:
-        if isinstance(cat, HackingToolsCollection) and cat.TITLE != "All tools":
+        if isinstance(cat, NeferaxToolsCollection) and cat.TITLE != "All tools":
             lines.append(f"\n### {cat.TITLE}\n")
             lines.append(generate_table(cat))
 
@@ -117,7 +117,7 @@ def main():
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Nefereax/hackingtool&type=Date)](https://star-history.com/#Nefereax/hackingtool&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Nefereax/neferax&type=Date)](https://star-history.com/#Nefereax/neferax&Date)
 
 ---
 

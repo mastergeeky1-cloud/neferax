@@ -70,6 +70,11 @@ TOOLS_BY_CAT = {
     "MITM": ["mitmproxy","ettercap","sslstrip","sslscan","sslyze"],
     "Traffic": ["tcpdump","tshark","ngrep"],
     "Reverse": ["radare2","gdb","nasm","binwalk","foremost","exiv2"],
+    "Binary": ["strings","xxd","objdump","readelf","strace","ltrace","nm","strip","objcopy","ropper","pwntools"],
+    "PE": ["pecheck","pe-sieve","floss","capa","peframe","detect-it-easy"],
+    "Memory": ["volatility","volatility3","avml","lime","scanmem","memdump","gcore"],
+    "Scanning": ["rustscan","zmap","zgrab","crackmapexec","impacket"],
+    "Attacking": ["mimikatz","msfvenom","chisel","ligolo-ng","beef"],
 }
 
 TOOL_META = {
@@ -190,6 +195,45 @@ TOOL_META = {
     "httpx": ("Httpx","HTTP probing toolkit","httpx -u <target>"),
     "subfinder": ("Subfinder","Subdomain discovery","subfinder -d <domain>"),
     "naabu": ("Naabu","Fast port scanner","naabu -host <target>"),
+    # binary
+    "strings": ("Strings","Extract strings from binaries","strings <binary>"),
+    "xxd": ("Xxd","Hex dump and reverse","xxd <binary>"),
+    "objdump": ("Objdump","Disassemble object files","objdump -d <binary>"),
+    "readelf": ("Readelf","ELF file analysis","readelf -a <binary>"),
+    "strace": ("Strace","System call tracer","strace -f -o trace.log <command>"),
+    "ltrace": ("Ltrace","Library call tracer","ltrace -o trace.log <command>"),
+    "nm": ("Nm","Symbol listing","nm <binary>"),
+    "strip": ("Strip","Strip symbols","strip <binary>"),
+    "objcopy": ("Objcopy","Copy/manipulate objects","objcopy <infile> <outfile>"),
+    "ropper": ("Ropper","ROP gadget finder","ropper --file <binary>"),
+    "pwntools": ("Pwntools","Exploit development library","python3 -c 'from pwn import *; print(ELF("<binary>"))'"),
+    # pe
+    "pecheck": ("Pecheck","PE file checker","pecheck <exe>"),
+    "pe-sieve": ("Pe-Sieve","PE analysis/malware detection","pe-sieve /pid <pid>"),
+    "floss": ("Floss","FireEye Obfuscated String Solver","floss <exe>"),
+    "capa": ("Capa","Binary capability analyzer","capa <exe>"),
+    "peframe": ("Peframe","PE analysis framework","peframe <exe>"),
+    "detect-it-easy": ("Detect It Easy","File type identifier","diec <exe>"),
+    # memory
+    "volatility": ("Volatility","Memory forensics framework","volatility -f <memory.dump> --profile=<profile>"),
+    "volatility3": ("Volatility3","Memory forensics v3","vol -f <memory.dump>"),
+    "avml": ("Avml","Acquire Volatile Memory Linux","avml <output.lime>"),
+    "lime": ("Lime","Linux Memory Extractor","lime-forensics <output.mem>"),
+    "scanmem": ("Scanmem","Memory scanner/editor","scanmem <pid>"),
+    "memdump": ("Memdump","Process memory dumper","memdump <pid>"),
+    "gcore": ("Gcore","Core dump generator","gcore <pid>"),
+    # scanning
+    "rustscan": ("RustScan","Ultra-fast Rust port scanner","rustscan -a <target>"),
+    "zmap": ("ZMap","Internet-wide scanner","zmap -p 443 <target>"),
+    "zgrab": ("ZGrab","Application-layer scanner","zgrab --port 443 --tls <target>"),
+    "crackmapexec": ("CrackMapExec","Network attack suite","crackmapexec smb <target>"),
+    "impacket": ("Impacket","AD protocol toolkit","impacket-GetNPUsers -dc-ip <target> <domain>/"),
+    # attacking
+    "mimikatz": ("Mimikatz","Windows credential extraction","mimikatz"),
+    "msfvenom": ("Msfvenom","Metasploit payload generator","msfvenom -p <payload> LHOST=<target> LPORT=4444"),
+    "chisel": ("Chisel","Fast TCP/UDP tunnel","chisel client <target>:<port>"),
+    "ligolo-ng": ("Ligolo-ng","Tunneling proxy","ligolo-ng -connect <target>:<port>"),
+    "beef": ("BeEF","Browser exploitation framework","beef-xss"),
 }
 
 def build_category(name, icon, tool_names):

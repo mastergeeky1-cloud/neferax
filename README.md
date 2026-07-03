@@ -30,16 +30,16 @@
 
 ```bash
 # Install
-sudo git clone https://github.com/mastergeeky1-cloud/neferax.git /usr/share/hackingtool
-cd /usr/share/hackingtool && sudo python3 install.py
+sudo git clone https://github.com/dev/neferax.git /usr/share/neferax
+cd /usr/share/neferax && sudo python3 install.py
 
 # Or run directly
-sudo nefereax scan 10.10.10.1          # Quick vulnerability scan
-sudo nefereax full target.com           # Full attack chain (13 suites)
-sudo nefereax list                       # Browse all 114 tools
-sudo nefereax search --method sqli       # Find SQL injection tools
-sudo nefereax reports                    # Open HTML report index
-sudo nefereax menu                       # Launch TUI
+sudo neferax scan 10.10.10.1          # Quick vulnerability scan
+sudo neferax full target.com           # Full attack chain (13 suites)
+sudo neferax list                       # Browse all 114 tools
+sudo neferax search --method sqli       # Find SQL injection tools
+sudo neferax reports                    # Open HTML report index
+sudo neferax menu                       # Launch TUI
 ```
 
 ---
@@ -48,7 +48,7 @@ sudo nefereax menu                       # Launch TUI
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    nefereax CLI                          │
+│                    neferax CLI                          │
 │  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌───────────┐  │
 │  │  RECON  │  │   WEB   │  │ EXPLOIT │  │  PASSWORD  │  │
 │  │ 27tools │  │ 13tools │  │ 6tools  │  │  8tools    │  │
@@ -96,8 +96,8 @@ sudo nefereax menu                       # Launch TUI
 Every tool run generates a timestamped HTML report with dark theme:
 
 ```
-~/.hackingtool/reports/
-├── index.html              ← Report index (nefereax reports)
+~/.neferax/reports/
+├── index.html              ← Report index (neferax reports)
 ├── 20260702_235959_nmap.html
 ├── 20260702_235959_gobuster.html
 ├── 20260702_235959_nikto.html
@@ -116,18 +116,18 @@ Every tool run generates a timestamped HTML report with dark theme:
 
 ```bash
 # Always run with sudo for full capability
-sudo nefereax scan 10.10.10.1
+sudo neferax scan 10.10.10.1
 
 # Safe commands (no root needed)
-nefereax list              # Browse tools
-nefereax search nmap       # Search tools
-nefereax info hydra        # Tool details
-nefereax reports           # View reports
+neferax list              # Browse tools
+neferax search nmap       # Search tools
+neferax info hydra        # Tool details
+neferax reports           # View reports
 ```
 
 - 33 tools flagged as `SUDO_REQUIRED` (wireless, mitm, traffic, etc.)
 - Running without root shows a clear warning
-- `sudo nefereax` → all tools work without per-command sudo
+- `sudo neferax` → all tools work without per-command sudo
 
 ---
 
@@ -137,13 +137,13 @@ Every tool is tagged with attack methods for powerful filtering:
 
 ```bash
 # Find all SQL injection tools
-nefereax search --method sqli
+neferax search --method sqli
 
 # Find port scanners
-nefereax search --method port_scan
+neferax search --method port_scan
 
 # Find OSINT tools
-nefereax search --method osint
+neferax search --method osint
 ```
 
 ---
@@ -241,9 +241,9 @@ arping · windows-binaries · webshells · laudanum
 Launch the interactive menu:
 
 ```bash
-sudo nefereax menu
+sudo neferax menu
 # or
-hackingtool
+neferax
 ```
 
 Features:
@@ -258,21 +258,21 @@ Features:
 
 ### From GitHub (recommended)
 ```bash
-git clone https://github.com/mastergeeky1-cloud/neferax.git /usr/share/hackingtool
-cd /usr/share/hackingtool
+git clone https://github.com/dev/neferax.git /usr/share/neferax
+cd /usr/share/neferax
 sudo python3 install.py
 
 # Launchers installed:
-/usr/bin/nefereax      # CLI
+/usr/bin/neferax      # CLI
 /usr/bin/neferax       # Alias
-/usr/bin/hackingtool   # TUI
+/usr/bin/neferax   # TUI
 ```
 
 ### Manual
 ```bash
-sudo ln -s /usr/share/hackingtool/nefereax_cli.py /usr/bin/nefereax
-sudo ln -s /usr/share/hackingtool/nefereax_cli.py /usr/bin/neferax
-sudo ln -s /usr/share/hackingtool/hackingtool.py /usr/bin/hackingtool
+sudo ln -s /usr/share/neferax/neferax_cli.py /usr/bin/neferax
+sudo ln -s /usr/share/neferax/neferax_cli.py /usr/bin/neferax
+sudo ln -s /usr/share/neferax/neferax.py /usr/bin/neferax
 ```
 
 ---
@@ -303,5 +303,5 @@ sudo ln -s /usr/share/hackingtool/hackingtool.py /usr/bin/hackingtool
 <p align="center">
   <strong>NEFERAX</strong> — <em>Dark Security Framework</em>
   <br>
-  <sub>mastergeeky1-cloud/neferax</sub>
+  <sub>dev/neferax</sub>
 </p>

@@ -77,7 +77,7 @@ def _show_inline_help():
     Prompt.ask("[dim]Press Enter to return[/dim]", default="")
 
 
-class HackingTool:
+class NeferaxTool:
     TITLE: str              = ""
     DESCRIPTION: str        = ""
     INSTALL_COMMANDS: list  = []
@@ -180,14 +180,14 @@ class HackingTool:
         console.print("[yellow]No update logic defined for this tool.[/yellow]")
 
 
-class HackingToolsCollection:
+class NeferaxToolsCollection:
     TITLE: str = ""
     DESCRIPTION: str = ""
-    TOOLS: list[HackingTool] = []
+    TOOLS: list[NeferaxTool] = []
 
     def __init__(self):
-        self._archived: list[HackingTool] = []
-        self._incompatible: list[HackingTool] = []
+        self._archived: list[NeferaxTool] = []
+        self._incompatible: list[NeferaxTool] = []
 
     def show_options(self):
         clear_screen()

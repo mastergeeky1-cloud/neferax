@@ -2,8 +2,8 @@ from pathlib import Path
 import platform
 import shutil as _shutil
 
-REPO_OWNER   = "mastergeeky1-cloud"
-REPO_NAME    = "hackingtool"
+REPO_OWNER   = "dev"
+REPO_NAME    = "neferax"
 GITHUB_REPO  = "neferax"
 REPO_URL     = f"https://github.com/{REPO_OWNER}/{GITHUB_REPO}.git"
 REPO_WEB_URL = f"https://github.com/{REPO_OWNER}/{GITHUB_REPO}"

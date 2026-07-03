@@ -1,8 +1,8 @@
-from core import HackingTool
-from core import HackingToolsCollection
+from core import NeferaxTool
+from core import NeferaxToolsCollection
 
 
-class MobSF(HackingTool):
+class MobSF(NeferaxTool):
     TITLE = "MobSF (Mobile Security Framework)"
     DESCRIPTION = "All-in-one mobile app pentesting, malware analysis, and security assessment."
     INSTALL_COMMANDS = [
@@ -14,7 +14,7 @@ class MobSF(HackingTool):
     SUPPORTED_OS = ["linux", "macos"]
 
 
-class Frida(HackingTool):
+class Frida(NeferaxTool):
     TITLE = "Frida (Dynamic Instrumentation)"
     DESCRIPTION = "Dynamic instrumentation toolkit for runtime hooking on Android, iOS, Windows, macOS, Linux."
     INSTALL_COMMANDS = ["pip install --user frida-tools"]
@@ -23,7 +23,7 @@ class Frida(HackingTool):
     SUPPORTED_OS = ["linux", "macos"]
 
 
-class Objection(HackingTool):
+class Objection(NeferaxTool):
     TITLE = "Objection (Mobile Runtime Exploration)"
     DESCRIPTION = "Runtime mobile exploration toolkit powered by Frida — no jailbreak/root required."
     INSTALL_COMMANDS = ["pip install --user objection"]
@@ -32,7 +32,7 @@ class Objection(HackingTool):
     SUPPORTED_OS = ["linux", "macos"]
 
 
-class MobileSecurityTools(HackingToolsCollection):
+class MobileSecurityTools(NeferaxToolsCollection):
     TITLE = "Mobile Security Tools"
     DESCRIPTION = "Tools for Android/iOS application security testing and analysis."
     TOOLS = [

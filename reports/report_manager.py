@@ -1,7 +1,7 @@
 from datetime import datetime
 from pathlib import Path
 
-REPORTS_DIR = Path.home() / ".hackingtool" / "reports"
+REPORTS_DIR = Path.home() / ".neferax" / "reports"
 
 def ensure_dir():
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)

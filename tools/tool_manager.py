@@ -5,11 +5,11 @@ from time import sleep
 
 from rich.prompt import Confirm
 
-from core import HackingTool, HackingToolsCollection, console
+from core import NeferaxTool, NeferaxToolsCollection, console
 from constants import APP_INSTALL_DIR, APP_BIN_PATH, USER_CONFIG_DIR, REPO_URL
 
 
-class UpdateTool(HackingTool):
+class UpdateTool(NeferaxTool):
     TITLE = "Update Tool or System"
     DESCRIPTION = "Update system packages or pull the latest Nefereax code"
 
@@ -50,7 +50,7 @@ class UpdateTool(HackingTool):
         console.print("[success]✔ Nefereax updated.[/success]")
 
 
-class UninstallTool(HackingTool):
+class UninstallTool(NeferaxTool):
     TITLE = "Uninstall Nefereax"
     DESCRIPTION = "Remove Nefereax from the system"
 
@@ -84,7 +84,7 @@ class UninstallTool(HackingTool):
         sys.exit(0)
 
 
-class ToolManager(HackingToolsCollection):
+class ToolManager(NeferaxToolsCollection):
     TITLE = "Update or Uninstall | Nefereax"
     TOOLS = [
         UpdateTool(),

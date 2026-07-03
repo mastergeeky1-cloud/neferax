@@ -52,7 +52,7 @@ def log(lvl, msg):
            }
     print(f"  {D}\u2503{X} {sym.get(lvl,lvl).ljust(8)} {msg}")
 
-REPORTS_DIR = Path.home() / ".hackingtool" / "reports"
+REPORTS_DIR = Path.home() / ".neferax" / "reports"
 
 # ── HTML Report Templates ──────────────────────────────────────────────
 CSS = """*{margin:0;padding:0;box-sizing:border-box}
@@ -526,6 +526,82 @@ tool("subfinder","subfinder -d <domain>","recon","Subdomain discovery",
 tool("naabu","naabu -host <target>","recon","Fast port scanner",
      methods=["port_scan","fast_scan","syn_scan","service_detect"])
 
+# ── BINARY ANALYSIS ──
+tool("strings","strings <binary>","binary","Extract printable strings from binaries",
+     methods=["string_extract","binary_analysis","forensics"])
+tool("xxd","xxd <binary>","binary","Hex dump and reverse",
+     methods=["hex_dump","byte_edit","binary_analysis"])
+tool("objdump","objdump -d <binary>","binary","Disassemble object files",
+     methods=["disasm","binary_analysis","symbol_analysis","section_dump"])
+tool("readelf","readelf -a <binary>","binary","ELF file analysis",
+     methods=["elf_analysis","binary_analysis","section_dump","symbol_analysis"])
+tool("strace","strace -f -o trace.log <command>","binary","System call tracer",
+     methods=["syscall_trace","binary_analysis","debug","sandbox_detect"])
+tool("ltrace","ltrace -o trace.log <command>","binary","Library call tracer",
+     methods=["library_trace","binary_analysis","debug"])
+tool("nm","nm <binary>","binary","Symbol listing from object files",
+     methods=["symbol_dump","binary_analysis","reverse"])
+tool("strip","strip <binary>","binary","Strip symbols from binaries",
+     methods=["symbol_strip","binary_obfuscate","anti_reverse"])
+tool("objcopy","objcopy <infile> <outfile>","binary","Copy and manipulate object files",
+     methods=["binary_modify","format_convert","binary_patch"])
+tool("ropper","ropper --file <binary>","binary","ROP gadget finder",
+     methods=["rop_gadget","exploit_dev","binary_analysis","chain_build"])
+tool("pwntools","python3 -c 'from pwn import *; print(ELF("<binary>"))'","binary","Exploit development library",
+     methods=["exploit_dev","binary_analysis","shellcode_gen","rop_chain","fmt_string"])
+
+# ── PE / WINDOWS EXECUTABLE ANALYSIS ──
+tool("pecheck","pecheck <exe>","pe","PE file format checker",
+     methods=["pe_analysis","exe_inspect","binary_analysis","malware_analyze"])
+tool("pe-sieve","pe-sieve /pid <pid>","pe","PE analysis and malware detection",
+     methods=["pe_analysis","malware_detect","process_scan","inline_patch"])
+tool("floss","floss <exe>","pe","FireEye Obfuscated String Solver",
+     methods=["string_extract","deobfuscate","malware_analyze","stack_string"])
+tool("capa","capa <exe>","pe","Binary capability analyzer",
+     methods=["capability_analyze","malware_analyze","binary_analysis","mitre_mapping"])
+tool("peframe","peframe <exe>","pe","PE file analysis framework",
+     methods=["pe_analysis","malware_analyze","suspicious_detect","metadata_extract"])
+tool("detect-it-easy","diec <exe>","pe","Detect It Easy - file type identifier",
+     methods=["packer_detect","compiler_detect","binary_id","entropy_scan"])
+
+# ── MEMORY FORENSICS & HACKING ──
+tool("volatility","volatility -f <memory.dump> --profile=<profile>","memory","Memory forensics framework",
+     methods=["memory_analyze","process_dump","registry_scan","network_scan","malware_scan"])
+tool("volatility3","vol -f <memory.dump>","memory","Memory forensics v3",
+     methods=["memory_analyze","process_enum","file_scan","registry_scan","timeline"])
+tool("avml","avml <output.lime>","memory","Acquire Volatile Memory Linux",
+     methods=["memory_capture","ram_acquisition","forensics"], sudo=True)
+tool("lime","lime-forensics <output.mem>","memory","Linux Memory Extractor",
+     methods=["memory_capture","ram_dump","forensics"], sudo=True)
+tool("scanmem","scanmem <pid>","memory","Memory scanner and editor",
+     methods=["memory_scan","memory_edit","value_search","pointer_scan","game_hack"])
+tool("memdump","memdump <pid>","memory","Process memory dumper",
+     methods=["process_dump","memory_capture","forensics","crash_analyze"])
+tool("gcore","gcore <pid>","memory","Core dump generator",
+     methods=["core_dump","memory_capture","crash_analyze","debug"])
+
+# ── ADVANCED SCANNING & ATTACKING ──
+tool("rustscan","rustscan -a <target>","scanning","Ultra-fast port scanner (Rust)",
+     methods=["port_scan","fast_scan","service_detect","script_scan"])
+tool("zmap","zmap -p 443 <target>","scanning","Internet-wide network scanner",
+     methods=["port_scan","internet_scan","mass_scan","syn_scan"], sudo=True)
+tool("zgrab","zgrab --port 443 --tls <target>","scanning","Application-layer scanner",
+     methods=["service_grab","banner_grab","tls_scan","http_scan"])
+tool("crackmapexec","crackmapexec smb <target>","scanning","Network service attack suite",
+     methods=["smb_enum","winrm_enum","ldap_enum","ms15_011","pass_pol"])
+tool("impacket","impacket-GetNPUsers -dc-ip <target> <domain>/","scanning","AD protocol toolkit",
+     methods=["ad_enum","kerberos","pass_the_hash","relay","dcom_exec"])
+tool("mimikatz","mimikatz","attacking","Windows credential extraction",
+     methods=["cred_dump","pass_the_hash","kerberos_ticket","lsass_dump"], sudo=True)
+tool("msfvenom","msfvenom -p <payload> LHOST=<target> LPORT=4444","attacking","Metasploit payload generator",
+     methods=["payload_gen","shellcode","reverse_shell","bind_shell","stager"])
+tool("chisel","chisel client <target>:<port>","attacking","Fast TCP/UDP tunnel",
+     methods=["tunnel","proxy","port_forward","reverse_tunnel","socks"])
+tool("ligolo-ng","ligolo-ng -connect <target>:<port>","attacking","Advanced tunneling proxy",
+     methods=["tunnel","proxy","port_forward","reverse_tunnel","pivot"])
+tool("beef","beef-xss","attacking","Browser exploitation framework",
+     methods=["xss","hook","browser_exploit","phishing","module_based"])
+
 # ── Categories ─────────────────────────────────────────────────────────
 CATS = [
     ("RECON",    [n for n,v in TOOLS.items() if v["cat"]=="recon"]),
@@ -543,6 +619,11 @@ CATS = [
     ("TRAFFIC",  [n for n,v in TOOLS.items() if v["cat"]=="traffic"]),
     ("REVERSE",  [n for n,v in TOOLS.items() if v["cat"]=="reverse"]),
     ("MISC",     [n for n,v in TOOLS.items() if v["cat"]=="misc"]),
+    ("BINARY",   [n for n,v in TOOLS.items() if v["cat"]=="binary"]),
+    ("PE",       [n for n,v in TOOLS.items() if v["cat"]=="pe"]),
+    ("MEMORY",   [n for n,v in TOOLS.items() if v["cat"]=="memory"]),
+    ("SCANNING", [n for n,v in TOOLS.items() if v["cat"]=="scanning"]),
+    ("ATTACKING",[n for n,v in TOOLS.items() if v["cat"]=="attacking"]),
 ]
 
 CHAINS = {
@@ -559,7 +640,12 @@ CHAINS = {
     "cloud":    ("Cloud security audit",                     ["s3scanner","prowler","scoutsuite","tfsec","checkov","cloudsploit"]),
     "container":("Container security audit",                 ["trivy","kubectl","kubescape","kube-hunter","dockle","hadolint"]),
     "mobile":   ("Mobile app security",                      ["apktool","dex2jar","jadx","objection","mobsf"]),
-    "full":     ("Full attack chain (all categories)",       []),
+    "binary":   ("Binary analysis & reverse engineering",               ["strings","xxd","objdump","readelf","strace","ltrace","nm","ropper","pwntools"]),
+    "pe":       ("PE/Windows executable analysis",                    ["pecheck","pe-sieve","floss","capa","peframe","detect-it-easy"]),
+    "memory":   ("Memory forensics & hacking",                       ["volatility","volatility3","avml","lime","scanmem","memdump","gcore"]),
+    "scanning": ("Advanced scanning (RustScan, ZMap, ZGrab)",        ["rustscan","zmap","zgrab","crackmapexec","impacket"]),
+    "attack":   ("Advanced attacking (mimikatz, msfvenom, tunnels)", ["mimikatz","msfvenom","chisel","ligolo-ng","beef"]),
+    "full":     ("Full attack chain (all categories)",               []),
 }
 
 # ── Chain Runner ───────────────────────────────────────────────────────
@@ -622,7 +708,7 @@ def do_list():
 def do_help():
     logo()
     box_start("NEFERAX -- Dark Security Framework", sep=True)
-    box_line(f"{D}Usage:  {C}nefereax <command> [options] <target>{X}", D)
+    box_line(f"{D}Usage:  {C}neferax <command> [options] <target>{X}", D)
     box_line("")
     box_line(f"{S('ATTACK CHAINS:')}", R)
     for n, (d, _) in CHAINS.items():
@@ -631,23 +717,23 @@ def do_help():
     box_line(f"{S('COMMANDS:')}", R)
     for c_, d_ in [("list","List all tools with methods"),("search <q>","Search tools"),
                    ("info <t>","Tool details"),("reports","Open report index"),
-                   ("menu","Interactive TUI"),("version","Show version"),("sudo nefereax","Run as root for all tools")]:
+                   ("menu","Interactive TUI"),("version","Show version"),("sudo neferax","Run as root for all tools")]:
         box_line(f"  {S(c_):14}{d_}")
     box_line("")
     box_line(f"{S('FILTER:')}", R)
     box_line(f"  {S('--method <m>')}  Filter by attack method (port_scan, sqli, osint, ...)")
     box_line("")
     box_line(f"{S('EXAMPLES:')}", R)
-    for c_, d_ in [("nefereax scan 10.10.10.1","Quick scan + HTML report"),
-                   ("nefereax full 192.168.1.0/24","Full chain + aggregated report"),
-                   ("nefereax search --method sqli","Search by attack method"),
-                   ("nefereax reports","Open HTML report index"),("sudo nefereax scan 10.10.10.1","Scan with root privileges")]:
+    for c_, d_ in [("neferax scan 10.10.10.1","Quick scan + HTML report"),
+                   ("neferax full 192.168.1.0/24","Full chain + aggregated report"),
+                   ("neferax search --method sqli","Search by attack method"),
+                   ("neferax reports","Open HTML report index"),("sudo neferax scan 10.10.10.1","Scan with root privileges")]:
         box_line(f"  {D}{c_:35}{X}  {d_}")
     box_end()
 
 def do_version():
     logo()
-    box_start(f"Nefereax v{V}  |  Dark Security Framework")
+    box_start(f"Neferax v{V}  |  Dark Security Framework")
     tcnt = str(len(TOOLS)); ccnt = str(len(CHAINS))
     box_line(f"  {D}{tcnt} tools  |  {ccnt} attack chains{X}")
     box_line(f"  {D}Reports: {REPORTS_DIR}{X}")
@@ -686,7 +772,7 @@ def do_info(name):
     elif name in CHAINS:
         box_start(f"CHAIN: {name}")
         box_line(f"  {CHAINS[name][0]}")
-        box_line(f"  {D}nefereax {name} <target>{X}")
+        box_line(f"  {D}neferax {name} <target>{X}")
     else:
         box_start(f"Unknown: {name}")
     box_end()
@@ -707,7 +793,7 @@ def do_reports():
 def do_unknown(cmd):
     logo()
     box_start(f"{Y}Unknown: {cmd}{X}")
-    box_line(f"  {D}Run 'nefereax --help' for usage{X}")
+    box_line(f"  {D}Run 'neferax --help' for usage{X}")
     box_end()
 
 # ── Root Check ─────────────────────────────────────────────────────────
@@ -731,9 +817,9 @@ def main():
         pass
     elif cmd not in SKIP_ROOT:
         if not root_check():
-            log("!", f"Some tools will fail without root. Use {C}sudo nefereax {cmd}{X}")
+            log("!", f"Some tools will fail without root. Use {C}sudo neferax {cmd}{X}")
     if cmd == "version": do_version(); return 0
-    if cmd == "menu": os.execv("/usr/bin/hackingtool", ["hackingtool"])
+    if cmd == "menu": os.execv("/usr/bin/neferax", ["neferax"])
     if cmd == "list": do_list(); return 0
     if cmd == "reports": do_reports(); return 0
 
@@ -747,17 +833,17 @@ def main():
             elif not a.startswith("--"):
                 query = a
         if not query:
-            logo(); log("-", "Usage: nefereax search [--method <m>] <query>"); return 1
+            logo(); log("-", "Usage: neferax search [--method <m>] <query>"); return 1
         do_search(query.lower(), method); return 0
 
     if cmd == "info":
         if len(sys.argv) < 3:
-            logo(); log("-", "Usage: nefereax info <tool>"); return 1
+            logo(); log("-", "Usage: neferax info <tool>"); return 1
         do_info(" ".join(sys.argv[2:]).lower()); return 0
 
     if cmd in CHAINS:
         if len(sys.argv) < 3:
-            logo(); log("-", f"Usage: nefereax {cmd} <target>"); return 1
+            logo(); log("-", f"Usage: neferax {cmd} <target>"); return 1
         target = " ".join(sys.argv[2:])
         signal.signal(signal.SIGINT, lambda s, f: sys.exit(0))
         run_chain(cmd, target); return 0

@@ -1,10 +1,10 @@
-from core import HackingTool, HackingToolsCollection, console
+from core import NeferaxTool, NeferaxToolsCollection, console
 
 from rich.panel import Panel
 from rich.prompt import Prompt
 
 
-class KnockMail(HackingTool):
+class KnockMail(NeferaxTool):
     TITLE = "Knockmail"
     DESCRIPTION = "KnockMail Tool Verify If Email Exists"
     INSTALL_COMMANDS = [
@@ -15,7 +15,7 @@ class KnockMail(HackingTool):
     PROJECT_URL = "https://github.com/heywoodlh/KnockMail"
 
 
-class EmailVerifyTools(HackingToolsCollection):
+class EmailVerifyTools(NeferaxToolsCollection):
     TITLE = "Email Verify tools"
     TOOLS = [KnockMail()]
 

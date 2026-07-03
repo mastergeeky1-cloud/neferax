@@ -4,7 +4,7 @@ import subprocess
 import webbrowser
 import sys
 
-from core import HackingTool, HackingToolsCollection, console
+from core import NeferaxTool, NeferaxToolsCollection, console
 from core import clear_screen
 
 from rich.panel import Panel
@@ -12,7 +12,7 @@ from rich.text import Text
 from rich.prompt import Prompt
 
 
-class NMAP(HackingTool):
+class NMAP(NeferaxTool):
     TITLE = "Network Map (nmap)"
     DESCRIPTION = "Free and open source utility for network discovery and security auditing"
     INSTALL_COMMANDS = [
@@ -25,7 +25,7 @@ class NMAP(HackingTool):
         super().__init__(runnable=False)
 
 
-class Dracnmap(HackingTool):
+class Dracnmap(NeferaxTool):
     TITLE = "Dracnmap"
     DESCRIPTION = "Dracnmap is an open source program which is using to \n" \
                   "exploit the network and gathering information with nmap help."
@@ -37,7 +37,7 @@ class Dracnmap(HackingTool):
     PROJECT_URL = "https://github.com/Screetsec/Dracnmap"
 
 
-class PortScan(HackingTool):
+class PortScan(NeferaxTool):
     TITLE = "Port scanning"
 
     def __init__(self):
@@ -50,7 +50,7 @@ class PortScan(HackingTool):
         subprocess.run(["sudo", "nmap", "-O", "-Pn", target])
 
 
-class Host2IP(HackingTool):
+class Host2IP(NeferaxTool):
     TITLE = "Host to IP "
 
     def __init__(self):
@@ -64,7 +64,7 @@ class Host2IP(HackingTool):
         console.print("[bold magenta]{host} -> {ips}[/bold magenta]")
 
 
-class XeroSploit(HackingTool):
+class XeroSploit(NeferaxTool):
     TITLE = "Xerosploit"
     DESCRIPTION = "Xerosploit is a penetration testing toolkit whose goal is to perform\n" \
                   "man-in-the-middle attacks for testing purposes"
@@ -76,7 +76,7 @@ class XeroSploit(HackingTool):
     PROJECT_URL = "https://github.com/LionSec/xerosploit"
 
 
-class RedHawk(HackingTool):
+class RedHawk(NeferaxTool):
     TITLE = "RED HAWK (All In One Scanning)"
     DESCRIPTION = "All in one tool for Information Gathering and Vulnerability Scanning."
     INSTALL_COMMANDS = [
@@ -85,7 +85,7 @@ class RedHawk(HackingTool):
     PROJECT_URL = "https://github.com/Tuhinshubhra/RED_HAWK"
 
 
-class ReconSpider(HackingTool):
+class ReconSpider(NeferaxTool):
     TITLE = "ReconSpider(For All Scanning)"
     DESCRIPTION = "ReconSpider is most Advanced Open Source Intelligence (OSINT)" \
                   " Framework for scanning IP Address, Emails, \n" \
@@ -99,7 +99,7 @@ class ReconSpider(HackingTool):
     PROJECT_URL = "https://github.com/bhavsec/reconspider"
 
 
-class IsItDown(HackingTool):
+class IsItDown(NeferaxTool):
     TITLE = "IsItDown (Check Website Down/Up)"
     DESCRIPTION = "Check Website Is Online or Not"
 
@@ -112,7 +112,7 @@ class IsItDown(HackingTool):
         webbrowser.open_new_tab("https://www.isitdownrightnow.com/")
 
 
-class Infoga(HackingTool):
+class Infoga(NeferaxTool):
     TITLE = "Infoga - Email OSINT"
     DESCRIPTION = "Infoga is a tool gathering email accounts information\n" \
                   "(ip, hostname, country,...) from different public source"
@@ -124,7 +124,7 @@ class Infoga(HackingTool):
     PROJECT_URL = "https://github.com/m4ll0k/Infoga"
 
 
-class ReconDog(HackingTool):
+class ReconDog(NeferaxTool):
     TITLE = "ReconDog"
     DESCRIPTION = "ReconDog Information Gathering Suite"
     INSTALL_COMMANDS = ["git clone https://github.com/s0md3v/ReconDog.git"]
@@ -132,7 +132,7 @@ class ReconDog(HackingTool):
     PROJECT_URL = "https://github.com/s0md3v/ReconDog"
 
 
-class Striker(HackingTool):
+class Striker(NeferaxTool):
     TITLE = "Striker"
     DESCRIPTION = "Recon & Vulnerability Scanning Suite"
     INSTALL_COMMANDS = [
@@ -151,7 +151,7 @@ class Striker(HackingTool):
         )
 
 
-class SecretFinder(HackingTool):
+class SecretFinder(NeferaxTool):
     TITLE = "SecretFinder (like API & etc)"
     DESCRIPTION = "SecretFinder - A python script for find sensitive data \n" \
                   "like apikeys, accesstoken, authorizations, jwt,..etc \n " \
@@ -167,7 +167,7 @@ class SecretFinder(HackingTool):
         super().__init__(runnable=False)
 
 
-class Shodan(HackingTool):
+class Shodan(NeferaxTool):
     TITLE = "Find Info Using Shodan"
     DESCRIPTION = "Get ports, vulnerabilities, information, banners,..etc \n " \
                   "for any IP with Shodan (no apikey! no rate limit!)\n" \
@@ -179,7 +179,7 @@ class Shodan(HackingTool):
         super().__init__(runnable=False)
 
 
-class PortScannerRanger(HackingTool):
+class PortScannerRanger(NeferaxTool):
     TITLE = "Port Scanner - rang3r"
     DESCRIPTION = "rang3r is a python script which scans in multi thread\n " \
                   "all alive hosts within your range that you specify."
@@ -198,7 +198,7 @@ class PortScannerRanger(HackingTool):
         )
 
 
-class Breacher(HackingTool):
+class Breacher(NeferaxTool):
     TITLE = "Breacher"
     DESCRIPTION = "An advanced multithreaded admin panel finder written in python."
     INSTALL_COMMANDS = ["git clone https://github.com/s0md3v/Breacher.git"]
@@ -214,7 +214,7 @@ class Breacher(HackingTool):
         )
 
 
-class TheHarvester(HackingTool):
+class TheHarvester(NeferaxTool):
     TITLE = "theHarvester (OSINT)"
     DESCRIPTION = (
         "Gather emails, names, subdomains, IPs and URLs from public sources.\n"
@@ -228,7 +228,7 @@ class TheHarvester(HackingTool):
     PROJECT_URL = "https://github.com/laramies/theHarvester"
 
 
-class Amass(HackingTool):
+class Amass(NeferaxTool):
     TITLE = "Amass (Attack Surface Mapping)"
     DESCRIPTION = (
         "In-depth subdomain enumeration and attack surface mapping.\n"
@@ -243,7 +243,7 @@ class Amass(HackingTool):
     PROJECT_URL = "https://github.com/owasp-amass/amass"
 
 
-class Masscan(HackingTool):
+class Masscan(NeferaxTool):
     TITLE = "Masscan (Fast Port Scanner)"
     DESCRIPTION = (
         "Fastest internet port scanner — 10 million packets/sec.\n"
@@ -255,7 +255,7 @@ class Masscan(HackingTool):
     PROJECT_URL = "https://github.com/robertdavidgraham/masscan"
 
 
-class RustScan(HackingTool):
+class RustScan(NeferaxTool):
     TITLE = "RustScan (Modern Port Scanner)"
     DESCRIPTION = (
         "Scans all 65k ports in 3 seconds, passes results to nmap automatically.\n"
@@ -270,7 +270,7 @@ class RustScan(HackingTool):
     PROJECT_URL = "https://github.com/RustScan/RustScan"
 
 
-class Holehe(HackingTool):
+class Holehe(NeferaxTool):
     TITLE = "Holehe (Email → Social Accounts)"
     DESCRIPTION = (
         "Check if an email address is registered on 120+ websites.\n"
@@ -281,7 +281,7 @@ class Holehe(HackingTool):
     PROJECT_URL = "https://github.com/megadose/holehe"
 
 
-class Maigret(HackingTool):
+class Maigret(NeferaxTool):
     TITLE = "Maigret (Username OSINT)"
     DESCRIPTION = (
         "Collect a dossier on a person by username across 3000+ sites.\n"
@@ -292,7 +292,7 @@ class Maigret(HackingTool):
     PROJECT_URL = "https://github.com/soxoj/maigret"
 
 
-class Httpx(HackingTool):
+class Httpx(NeferaxTool):
     TITLE = "httpx (HTTP Toolkit)"
     DESCRIPTION = (
         "Fast multi-purpose HTTP probing tool.\n"
@@ -306,7 +306,7 @@ class Httpx(HackingTool):
     PROJECT_URL = "https://github.com/projectdiscovery/httpx"
 
 
-class SpiderFoot(HackingTool):
+class SpiderFoot(NeferaxTool):
     TITLE = "SpiderFoot (OSINT Automation)"
     DESCRIPTION = "Automates OSINT collection for threat intelligence and attack surface mapping."
     INSTALL_COMMANDS = ["pip install --user spiderfoot"]
@@ -314,7 +314,7 @@ class SpiderFoot(HackingTool):
     PROJECT_URL = "https://github.com/smicallef/spiderfoot"
 
 
-class Subfinder(HackingTool):
+class Subfinder(NeferaxTool):
     TITLE = "Subfinder (Subdomain Enumeration)"
     DESCRIPTION = "Fast passive subdomain enumeration using multiple sources."
     REQUIRES_GO = True
@@ -325,7 +325,7 @@ class Subfinder(HackingTool):
     PROJECT_URL = "https://github.com/projectdiscovery/subfinder"
 
 
-class TruffleHog(HackingTool):
+class TruffleHog(NeferaxTool):
     TITLE = "TruffleHog (Secret Scanner)"
     DESCRIPTION = "Find, verify, and analyze leaked credentials across git repos, S3 buckets, filesystems."
     INSTALL_COMMANDS = ["pip install --user trufflehog"]
@@ -333,7 +333,7 @@ class TruffleHog(HackingTool):
     PROJECT_URL = "https://github.com/trufflesecurity/trufflehog"
 
 
-class Gitleaks(HackingTool):
+class Gitleaks(NeferaxTool):
     TITLE = "Gitleaks (Git Secret Scanner)"
     DESCRIPTION = "Fast secret scanner for git repos — detects hardcoded passwords, API keys, tokens."
     REQUIRES_GO = True
@@ -344,7 +344,7 @@ class Gitleaks(HackingTool):
     PROJECT_URL = "https://github.com/gitleaks/gitleaks"
 
 
-class InformationGatheringTools(HackingToolsCollection):
+class InformationGatheringTools(NeferaxToolsCollection):
     TITLE = "Information gathering tools"
     TOOLS = [
         NMAP(),
