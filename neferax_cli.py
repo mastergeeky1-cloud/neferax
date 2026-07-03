@@ -547,7 +547,7 @@ tool("objcopy","objcopy <infile> <outfile>","binary","Copy and manipulate object
      methods=["binary_modify","format_convert","binary_patch"])
 tool("ropper","ropper --file <binary>","binary","ROP gadget finder",
      methods=["rop_gadget","exploit_dev","binary_analysis","chain_build"])
-tool("pwntools","python3 -c 'from pwn import *; print(ELF("<binary>"))'","binary","Exploit development library",
+tool("pwntools","pwntools <binary>","binary","Exploit development library (pwntools)",
      methods=["exploit_dev","binary_analysis","shellcode_gen","rop_chain","fmt_string"])
 
 # ── PE / WINDOWS EXECUTABLE ANALYSIS ──

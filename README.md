@@ -30,7 +30,7 @@
 
 ```bash
 # Install
-sudo git clone https://github.com/dev/neferax.git /usr/share/neferax
+sudo git clone https://github.com/mastergeeky1-cloud/neferax.git /usr/share/neferax
 cd /usr/share/neferax && sudo python3 install.py
 
 # Or run directly
@@ -258,7 +258,7 @@ Features:
 
 ### From GitHub (recommended)
 ```bash
-git clone https://github.com/dev/neferax.git /usr/share/neferax
+git clone https://github.com/mastergeeky1-cloud/neferax.git /usr/share/neferax
 cd /usr/share/neferax
 sudo python3 install.py
 
@@ -303,5 +303,5 @@ sudo ln -s /usr/share/neferax/neferax.py /usr/bin/neferax
 <p align="center">
   <strong>NEFERAX</strong> — <em>Dark Security Framework</em>
   <br>
-  <sub>dev/neferax</sub>
+  <sub>mastergeeky1-cloud/neferax</sub>
 </p>
