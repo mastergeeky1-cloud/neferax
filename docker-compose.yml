@@ -1,5 +1,5 @@
 # docker-compose.yml
-# Use: docker compose up -d  then  docker exec -it hackingtool bash
+# Use: docker compose up -d  then  docker exec -it neferax bash
 #
 # Profiles:
 #   (default)  — runs the built image; code is embedded at build time
@@ -7,24 +7,24 @@
 #                docker compose --profile dev up
 
 services:
-  hackingtool:
+  neferax:
     build:
       context: .
       dockerfile: Dockerfile
-    image: hackingtool:latest
+    image: neferax:latest
     container_name: neferax-darkax
     stdin_open: true
     tty: true
     # Persist tools installed at runtime across container restarts
     volumes:
-      - hackingtool_data:/root/.hackingtool
+      - neferax_data:/root/.neferax
     restart: unless-stopped
 
-  hackingtool-dev:
+  neferax-dev:
     build:
       context: .
       dockerfile: Dockerfile
-    image: hackingtool:latest
+    image: neferax:latest
     container_name: neferax-darkax-dev
     stdin_open: true
     tty: true
@@ -32,9 +32,9 @@ services:
       - dev
     volumes:
       # Live source mount — code changes are visible without rebuilding
-      - .:/root/hackingtool
-      - hackingtool_data:/root/.hackingtool
+      - .:/root/neferax
+      - neferax_data:/root/.neferax
     restart: "no"
 
 volumes:
-  hackingtool_data:
+  neferax_data:

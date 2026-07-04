@@ -20,17 +20,17 @@ TOOLS_PER_ROW = 4
 HEADER = """\
 <div align="center">
 
-<img src="images/logo.svg" alt="Nefereax DarkAx" width="600">
+<img src="images/logo.svg" alt="Neferax DarkAx" width="600">
 
 <p><b>All-in-One Hacking Tool for Security Researchers & Pentesters</b></p>
 
-[![License](https://img.shields.io/github/license/Nefereax/neferax)](LICENSE)&nbsp;
+[![License](https://img.shields.io/github/license/Neferax/neferax)](LICENSE)&nbsp;
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)&nbsp;
 [![Version](https://img.shields.io/badge/v2.0.0-FF4444?style=flat-square)](#)&nbsp;
-[![Stars](https://img.shields.io/github/stars/Nefereax/neferax?style=flat-square&color=red)](https://github.com/Nefereax/neferax/stargazers)&nbsp;
-[![Forks](https://img.shields.io/github/forks/Nefereax/neferax?style=flat-square&color=red)](https://github.com/Nefereax/neferax/network/members)&nbsp;
-[![Issues](https://img.shields.io/github/issues/Nefereax/neferax?style=flat-square&color=red)](https://github.com/Nefereax/neferax/issues)&nbsp;
-[![Last Commit](https://img.shields.io/github/last-commit/Nefereax/neferax?style=flat-square&color=FF4444)](https://github.com/Nefereax/neferax/commits/master)
+[![Stars](https://img.shields.io/github/stars/Neferax/neferax?style=flat-square&color=red)](https://github.com/Neferax/neferax/stargazers)&nbsp;
+[![Forks](https://img.shields.io/github/forks/Neferax/neferax?style=flat-square&color=red)](https://github.com/Neferax/neferax/network/members)&nbsp;
+[![Issues](https://img.shields.io/github/issues/Neferax/neferax?style=flat-square&color=red)](https://github.com/Neferax/neferax/issues)&nbsp;
+[![Last Commit](https://img.shields.io/github/last-commit/Neferax/neferax?style=flat-square&color=FF4444)](https://github.com/Neferax/neferax/commits/master)
 
 ![](https://img.shields.io/badge/20_Categories-7B61FF?style=for-the-badge)
 ![](https://img.shields.io/badge/185+_Tools-FF4444?style=for-the-badge)
@@ -39,7 +39,7 @@ HEADER = """\
 
 <a href="#installation"><img src="https://img.shields.io/badge/Install_Now-FF4444?style=for-the-badge&logo=rocket&logoColor=black" alt="Install Now"></a>&nbsp;
 <a href="#quick-commands"><img src="https://img.shields.io/badge/Quick_Commands-7B61FF?style=for-the-badge&logo=terminal&logoColor=white" alt="Quick Commands"></a>&nbsp;
-<a href="https://github.com/Nefereax/neferax/issues/new?template=tool_request.md"><img src="https://img.shields.io/badge/Suggest_a_Tool-FF61DC?style=for-the-badge&logo=plus&logoColor=white" alt="Suggest a Tool"></a>
+<a href="https://github.com/Neferax/neferax/issues/new?template=tool_request.md"><img src="https://img.shields.io/badge/Suggest_a_Tool-FF61DC?style=for-the-badge&logo=plus&logoColor=white" alt="Suggest a Tool"></a>
 
 </div>
 
@@ -59,7 +59,7 @@ HEADER = """\
 | **🏷** | **Tag filter** | Type `t` to filter by 19 tags — osint, web, c2, cloud, mobile... |
 | **🎯** | **Recommend** | Type `r` to get tool suggestions for a task description |
 | **🖤** | **DarkAx Theme** | New dark red visual style with aggressive color scheme |
-| **🏷** | **Nefereax Brand** | Full rebrand with Nefereax identity |
+| **🏷** | **Neferax Brand** | Full rebrand with Neferax identity |
 
 </td></tr>
 </table>
@@ -75,10 +75,10 @@ QUICK_CMDS = """\
 
 | Action | Command |
 |---|---|
-| Install | `curl -sSL https://raw.githubusercontent.com/Nefereax/neferax/master/install.sh | sudo bash` |
+| Install | `curl -sSL https://raw.githubusercontent.com/Neferax/neferax/master/install.sh | sudo bash` |
 | Run | `neferax` |
-| Update | `neferax` → `Update / Uninstall` → `Update Nefereax` |
-| Uninstall | `neferax` → `Update / Uninstall` → `Uninstall Nefereax` |
+| Update | `neferax` → `Update / Uninstall` → `Update Neferax` |
+| Uninstall | `neferax` → `Update / Uninstall` → `Uninstall Neferax` |
 
 ---
 
@@ -117,12 +117,12 @@ def main():
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Nefereax/neferax&type=Date)](https://star-history.com/#Nefereax/neferax&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Neferax/neferax&type=Date)](https://star-history.com/#Neferax/neferax&Date)
 
 ---
 
 <p align="center">
-  <i>Built with ❤️ by Nefereax — DarkAx Edition</i>
+  <i>Built with ❤️ by Neferax — DarkAx Edition</i>
 </p>
 """)
 

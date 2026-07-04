@@ -336,7 +336,7 @@ def build_header():
 
     return Panel(
         body,
-        title=f"[bold bright_red][ Nefereax v{VERSION} ][/bold bright_red]",
+        title=f"[bold bright_red][ Neferax v{VERSION} ][/bold bright_red]",
         title_align="left",
         subtitle=f"[dim][ {info['time']} ][/dim]",
         subtitle_align="right",
@@ -352,7 +352,7 @@ def show_help():
         ("  1-10   ", "bold cyan"),("open a category\n", "white"),
         ("  / or s ","bold cyan"),("search tools\n", "white"),
         ("  ?      ","bold cyan"),("show this help\n", "white"),
-        ("  q      ","bold cyan"),("quit Nefereax\n", "white"),
+        ("  q      ","bold cyan"),("quit Neferax\n", "white"),
         ("\n  Inside a Category\n", "bold white"),
         ("  ─────────────────\n", "dim"),
         ("  1-N    ", "bold cyan"),("select a tool\n", "white"),

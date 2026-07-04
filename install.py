@@ -97,7 +97,7 @@ def create_venv():
 
 def create_launcher(venv_path):
     launcher_dir = Path("/usr/bin")
-    for name, entry in [("neferax","neferax_tui.py"),("nefereax","neferax_cli.py"),("neferax","neferax_cli.py")]:
+    for name, entry in [("neferax","neferax_cli.py"),("neferax-tui","neferax_tui.py")]:
         l = launcher_dir / name
         l.write_text('#!/bin/bash\n'
             'source "' + str(venv_path) + '/bin/activate"\n'

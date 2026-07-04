@@ -1,17 +1,17 @@
 <div align="center">
 
-# Nefereax
+# Neferax
 
-**All-in-One Nefereax for Security Researchers & Pentesters**
+**All-in-One Neferax for Security Researchers & Pentesters**
 
-[![License](https://img.shields.io/github/license/Nefereax/Nefereax?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/github/license/Neferax/Neferax?style=flat-square)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Version](https://img.shields.io/badge/version-2.0.0-brightgreen?style=flat-square)](#)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Kali%20%7C%20Parrot%20%7C%20macOS-informational?style=flat-square)](#)
-[![Stars](https://img.shields.io/github/stars/Nefereax/Nefereax?style=flat-square)](https://github.com/Nefereax/Nefereax/stargazers)
-[![Forks](https://img.shields.io/github/forks/Nefereax/Nefereax?style=flat-square)](https://github.com/Nefereax/Nefereax/network/members)
-[![Issues](https://img.shields.io/github/issues/Nefereax/Nefereax?style=flat-square)](https://github.com/Nefereax/Nefereax/issues)
-[![Last Commit](https://img.shields.io/github/last-commit/Nefereax/Nefereax?style=flat-square)](https://github.com/Nefereax/Nefereax/commits/master)
+[![Stars](https://img.shields.io/github/stars/Neferax/Neferax?style=flat-square)](https://github.com/Neferax/Neferax/stargazers)
+[![Forks](https://img.shields.io/github/forks/Neferax/Neferax?style=flat-square)](https://github.com/Neferax/Neferax/network/members)
+[![Issues](https://img.shields.io/github/issues/Neferax/Neferax?style=flat-square)](https://github.com/Neferax/Neferax/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/Neferax/Neferax?style=flat-square)](https://github.com/Neferax/Neferax/commits/master)
 
 </div>
 
@@ -22,7 +22,7 @@
 - Python 3.10+ required — all Python 2 code removed
 - OS-aware menus — Linux-only tools are hidden automatically on macOS
 - Archived tools (Python 2, unmaintained) shown in a separate sub-menu
-- All `os.chdir()` bugs fixed — tools install to `~/.Nefereax/tools/`
+- All `os.chdir()` bugs fixed — tools install to `~/.Neferax/tools/`
 - No more `sudo git clone` — tools install to user home, no root needed
 - 22 new modern tools added across 6 categories
 - Rich terminal UI with shared theme — no more 32 different console instances
@@ -78,22 +78,22 @@ Issues or PRs that don't follow the title format may be closed without review.
 ### One-liner (recommended)
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/Nefereax/Nefereax/master/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/Neferax/Neferax/master/install.sh | sudo bash
 ```
 
-This handles everything — installs prerequisites, clones the repo, sets up a venv, and creates the `Nefereax` command.
+This handles everything — installs prerequisites, clones the repo, sets up a venv, and creates the `Neferax` command.
 
 ### Manual install
 
 ```bash
-git clone https://github.com/Nefereax/Nefereax.git
-cd Nefereax
+git clone https://github.com/Neferax/Neferax.git
+cd Neferax
 sudo python3 install.py   # detects local source, copies instead of re-cloning
 ```
 
 Then run:
 ```bash
-Nefereax
+Neferax
 ```
 
 ## Docker
@@ -101,14 +101,14 @@ Nefereax
 ### Step 1 — Clone the repository
 
 ```bash
-git clone https://github.com/Nefereax/Nefereax.git
-cd Nefereax
+git clone https://github.com/Neferax/Neferax.git
+cd Neferax
 ```
 
 ### Step 2 — Build the image
 
 ```bash
-docker build -t Nefereax .
+docker build -t Neferax .
 ```
 
 > First build takes a few minutes (Kali base + apt packages). Subsequent builds are fast thanks to BuildKit layer caching.
@@ -117,7 +117,7 @@ docker build -t Nefereax .
 
 **Option A — Direct (no Compose):**
 ```bash
-docker run -it --rm Nefereax
+docker run -it --rm Neferax
 ```
 
 **Option B — With Docker Compose (recommended):**
@@ -126,16 +126,16 @@ docker run -it --rm Nefereax
 docker compose up -d
 
 # Open an interactive shell
-docker exec -it Nefereax bash
+docker exec -it Neferax bash
 
 # Then launch the tool inside the container
-python3 Nefereax.py
+python3 Neferax.py
 ```
 
 **Option C — Dev mode (live source mount, changes reflected without rebuild):**
 ```bash
 docker compose --profile dev up
-docker exec -it Nefereax-dev bash
+docker exec -it Neferax-dev bash
 ```
 
 ### Stopping
@@ -161,9 +161,9 @@ pip install -r requirements.txt
 ## Star History
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Nefereax/Nefereax&type=Date&theme=dark" />
-  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Nefereax/Nefereax&type=Date" />
-  <img alt="Nefereax Star History Chart" src="https://api.star-history.com/svg?repos=Nefereax/Nefereax&type=Date" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Neferax/Neferax&type=Date&theme=dark" />
+  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Neferax/Neferax&type=Date" />
+  <img alt="Neferax Star History Chart" src="https://api.star-history.com/svg?repos=Neferax/Neferax&type=Date" />
 </picture>
 
 ---
@@ -171,9 +171,9 @@ pip install -r requirements.txt
 ## Social
 
 [![Twitter](https://img.shields.io/twitter/url?color=%231DA1F2&label=follow&logo=twitter&logoColor=%231DA1F2&style=flat-square&url=https%3A%2F%2Ftwitter.com%2F_Zinzu07)](https://twitter.com/_Zinzu07)
-[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&link=https://github.com/Nefereax/)](https://github.com/Nefereax/)
+[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&link=https://github.com/Neferax/)](https://github.com/Neferax/)
 
 > **Please don't use for illegal activity.**
-> Thanks to all original authors of the tools included in Nefereax.
+> Thanks to all original authors of the tools included in Neferax.
 
-Your favourite tool is not listed? [Suggest it here](https://github.com/Nefereax/Nefereax/issues/new?template=tool_request.md)
+Your favourite tool is not listed? [Suggest it here](https://github.com/Neferax/Neferax/issues/new?template=tool_request.md)

@@ -67,7 +67,7 @@ def _show_inline_help():
             ("  99     ", "bold cyan"), ("go back\n", "white"),
             ("  98     ", "bold cyan"), ("open project page / archived\n", "white"),
             ("  ?      ", "bold cyan"), ("show this help\n", "white"),
-            ("  q      ", "bold cyan"), ("quit Nefereax\n", "white"),
+            ("  q      ", "bold cyan"), ("quit Neferax\n", "white"),
         ),
         title="[bold bright_red] ? Quick Help [/bold bright_red]",
         border_style="bright_red",

@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-about: Suggest an improvement to hackingtool itself (not a new tool addition — use the Tool Request template for that)
+about: Suggest an improvement to neferax itself (not a new tool addition — use the Tool Request template for that)
 title: "[FEATURE] <short description>"
 labels: enhancement
 assignees: ''

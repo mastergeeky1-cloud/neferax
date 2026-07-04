@@ -11,12 +11,12 @@ from constants import APP_INSTALL_DIR, APP_BIN_PATH, USER_CONFIG_DIR, REPO_URL
 
 class UpdateTool(NeferaxTool):
     TITLE = "Update Tool or System"
-    DESCRIPTION = "Update system packages or pull the latest Nefereax code"
+    DESCRIPTION = "Update system packages or pull the latest Neferax code"
 
     def __init__(self):
         super().__init__([
             ("Update System", self.update_sys),
-            ("Update Nefereax", self.update_ht),
+            ("Update Neferax", self.update_ht),
         ], installable=False, runnable=False)
 
     def update_sys(self):
@@ -47,12 +47,12 @@ class UpdateTool(NeferaxTool):
         if (APP_INSTALL_DIR / "venv" / "bin" / "pip").exists():
             subprocess.run([pip, "install", "-q", "-r",
                             str(APP_INSTALL_DIR / "requirements.txt")])
-        console.print("[success]✔ Nefereax updated.[/success]")
+        console.print("[success]✔ Neferax updated.[/success]")
 
 
 class UninstallTool(NeferaxTool):
-    TITLE = "Uninstall Nefereax"
-    DESCRIPTION = "Remove Nefereax from the system"
+    TITLE = "Uninstall Neferax"
+    DESCRIPTION = "Remove Neferax from the system"
 
     def __init__(self):
         super().__init__([
@@ -61,7 +61,7 @@ class UninstallTool(NeferaxTool):
 
     def uninstall(self):
         import shutil
-        console.print("[warning]This will remove Nefereax from your system.[/warning]")
+        console.print("[warning]This will remove Neferax from your system.[/warning]")
         if not Confirm.ask("Continue?", default=False):
             return
 
@@ -79,13 +79,13 @@ class UninstallTool(NeferaxTool):
             shutil.rmtree(str(USER_CONFIG_DIR), ignore_errors=True)
             console.print(f"[success]✔ Removed {USER_CONFIG_DIR}[/success]")
 
-        console.print("[bold green]Nefereax uninstalled. Goodbye.[/bold green]")
+        console.print("[bold green]Neferax uninstalled. Goodbye.[/bold green]")
         sleep(1)
         sys.exit(0)
 
 
 class ToolManager(NeferaxToolsCollection):
-    TITLE = "Update or Uninstall | Nefereax"
+    TITLE = "Update or Uninstall | Neferax"
     TOOLS = [
         UpdateTool(),
         UninstallTool(),

@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 # ──────────────────────────────────────────────────────────────────────────────
-# Nefereax DarkAx — One-liner installer
+# Neferax DarkAx — One-liner installer
 #
 # Usage:
-#   curl -sSL https://raw.githubusercontent.com/Nefereax/hackingtool/master/install.sh | sudo bash
+#   curl -sSL https://raw.githubusercontent.com/Neferax/neferax/master/install.sh | sudo bash
 #
 # What it does:
 #   1. Checks prerequisites (Python 3.10+, git, pip, venv)
-#   2. Clones the repository to /usr/share/hackingtool
+#   2. Clones the repository to /usr/share/neferax
 #   3. Creates a Python venv and installs requirements
-#   4. Creates a launcher at /usr/bin/hackingtool
-#   5. Creates user directories at ~/.hackingtool/
+#   4. Creates a launcher at /usr/bin/neferax
+#   5. Creates user directories at ~/.neferax/
 # ──────────────────────────────────────────────────────────────────────────────
 set -euo pipefail
 
-REPO_URL="https://github.com/Nefereax/hackingtool.git"
-INSTALL_DIR="/usr/share/hackingtool"
-BIN_PATH="/usr/bin/hackingtool"
-CONFIG_DIR="${SUDO_USER:+$(eval echo ~"$SUDO_USER")}/.hackingtool"
-: "${CONFIG_DIR:=$HOME/.hackingtool}"
+REPO_URL="https://github.com/Neferax/neferax.git"
+INSTALL_DIR="/usr/share/neferax"
+BIN_PATH="/usr/bin/neferax"
+CONFIG_DIR="${SUDO_USER:+$(eval echo ~"$SUDO_USER")}/.neferax"
+: "${CONFIG_DIR:=$HOME/.neferax}"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -37,7 +37,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 echo ""
-echo -e "${BOLD}${RED}  ⚔  Nefereax DarkAx Installer${RESET}"
+echo -e "${BOLD}${RED}  ⚔  Neferax DarkAx Installer${RESET}"
 echo -e "  ─────────────────────────────────────"
 echo ""
 
@@ -116,8 +116,8 @@ ok "Dependencies installed"
 
 cat > "$BIN_PATH" << 'LAUNCHER'
 #!/bin/bash
-source "/usr/share/hackingtool/venv/bin/activate"
-python3 "/usr/share/hackingtool/hackingtool.py" "$@"
+source "/usr/share/neferax/venv/bin/activate"
+python3 "/usr/share/neferax/neferax.py" "$@"
 LAUNCHER
 chmod 755 "$BIN_PATH"
 ok "Launcher installed at $BIN_PATH"
@@ -138,5 +138,5 @@ ok "User config: $CONFIG_DIR"
 
 echo ""
 echo -e "${GREEN}${BOLD}  ✔  Installation complete!${RESET}"
-echo -e "  Type ${BOLD}${CYAN}hackingtool${RESET} to start."
+echo -e "  Type ${BOLD}${CYAN}neferax${RESET} to start."
 echo ""

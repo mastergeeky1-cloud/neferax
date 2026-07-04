@@ -79,8 +79,8 @@ SELECT tool, AVG(duration), COUNT(*) FROM tools_results GROUP BY tool;
 ## Phase 4: Plugin System
 
 ```python
-# /usr/share/hackingtool/plugins/my_tool.py
-from nefereax.plugin import BaseTool
+# /usr/share/neferax/plugins/my_tool.py
+from neferax.plugin import BaseTool
 
 class MyCustomTool(BaseTool):
     name = "my_tool"
@@ -92,7 +92,7 @@ class MyCustomTool(BaseTool):
         return self.report(output, exit_code)
 ```
 
-- Hot-reload plugins from `~/.hackingtool/plugins/`
+- Hot-reload plugins from `~/.neferax/plugins/`
 - Community plugin marketplace
 - Each plugin self-documents its methods, requirements, and dependencies
 
