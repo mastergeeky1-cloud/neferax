@@ -70,7 +70,7 @@ TOOLS_BY_CAT = {
     "MITM": ["mitmproxy","ettercap","sslstrip","sslscan","sslyze"],
     "Traffic": ["tcpdump","tshark","ngrep"],
     "Reverse": ["radare2","gdb","nasm","binwalk","foremost","exiv2"],
-    "Binary": ["strings","xxd","objdump","readelf","strace","ltrace","nm","strip","objcopy","ropper","pwntools"],
+    "pwntools": ("Pwntools","Exploit development library","pwntools <binary>"),
     "PE": ["pecheck","pe-sieve","floss","capa","peframe","detect-it-easy"],
     "Memory": ["volatility","volatility3","avml","lime","scanmem","memdump","gcore"],
     "Scanning": ["rustscan","zmap","zgrab","crackmapexec","impacket"],
@@ -206,7 +206,7 @@ TOOL_META = {
     "strip": ("Strip","Strip symbols","strip <binary>"),
     "objcopy": ("Objcopy","Copy/manipulate objects","objcopy <infile> <outfile>"),
     "ropper": ("Ropper","ROP gadget finder","ropper --file <binary>"),
-    "pwntools": ("Pwntools","Exploit development library","python3 -c 'from pwn import *; print(ELF("<binary>"))'"),
+    "pwntools": ("Pwntools","Exploit development library","pwntools"),
     # pe
     "pecheck": ("Pecheck","PE file checker","pecheck <exe>"),
     "pe-sieve": ("Pe-Sieve","PE analysis/malware detection","pe-sieve /pid <pid>"),
