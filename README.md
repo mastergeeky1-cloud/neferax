@@ -17,7 +17,7 @@
 ```
 
 <p align="center">
-  <strong>Dark Security Framework — 114 Precision Tools · 14 Attack Chains · HTML Reporting</strong>
+  <strong>Dark Security Framework — 148 Precision Tools · 19 Attack Chains · HTML Reporting</strong>
   <br>
   <sub>Master the dark arts of penetration testing with elegance and precision.</sub>
 </p>
@@ -35,8 +35,8 @@ cd /usr/share/neferax && sudo python3 install.py
 
 # Or run directly
 sudo neferax scan 10.10.10.1          # Quick vulnerability scan
-sudo neferax full target.com           # Full attack chain (13 suites)
-sudo neferax list                       # Browse all 114 tools
+sudo neferax full target.com           # Full attack chain (19 suites)
+sudo neferax list                       # Browse all 148 tools
 sudo neferax search --method sqli       # Find SQL injection tools
 sudo neferax reports                    # Open HTML report index
 sudo neferax menu                       # Launch TUI
@@ -62,8 +62,16 @@ sudo neferax menu                       # Launch TUI
 │  │ 5tools  │  │ 5tools  │  │ 5tools  │  │  3tools    │  │
 │  └─────────┘  └─────────┘  └─────────┘  └───────────┘  │
 │  ┌─────────┐  ┌─────────┐                               │
-│  │ REVERSE │  │  MISC   │  14 ATTACK CHAINS              │
-│  │ 6tools  │  │ 4tools  │  + HTML REPORTS                │
+│  │ REVERSE │  │  MISC   │                               │
+│  │ 6tools  │  │ 4tools  │  19 ATTACK CHAINS              │
+│  └─────────┘  └─────────┘                               │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌───────────┐  │
+│  │ BINARY  │  │   PE    │  │ MEMORY  │  │ SCANNING   │  │
+│  │ 11tools │  │ 7tools  │  │ 7tools  │  │  5tools    │  │
+│  └─────────┘  └─────────┘  └─────────┘  └───────────┘  │
+│  ┌─────────┐                                            │
+│  │ATTACKING│   + HTML REPORTS                            │
+│  │ 5tools  │                                            │
 │  └─────────┘  └─────────┘                               │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -148,7 +156,7 @@ neferax search --method osint
 
 ---
 
-##   All 114 Tools by Category
+##   All 148 Tools by Category
 
 <details>
 <summary><strong>RECON</strong> (27 tools)</summary>
@@ -229,6 +237,36 @@ radare2 · gdb · nasm · binwalk · foremost · exiv2
 </details>
 
 <details>
+<summary><strong>BINARY ANALYSIS</strong> (11 tools)</summary>
+<br>
+strings · xxd · objdump · readelf · strace · ltrace · nm · strip · objcopy · ropper · pwntools
+</details>
+
+<details>
+<summary><strong>PE / .EXE</strong> (7 tools)</summary>
+<br>
+pecheck · pe-sieve · floss · capa · peframe · detect-it-easy
+</details>
+
+<details>
+<summary><strong>MEMORY FORENSICS</strong> (7 tools)</summary>
+<br>
+volatility · volatility3 · avml · lime · scanmem · memdump · gcore
+</details>
+
+<details>
+<summary><strong>SCANNING</strong> (5 tools)</summary>
+<br>
+rustscan · zmap · zgrab · crackmapexec · impacket
+</details>
+
+<details>
+<summary><strong>ATTACKING</strong> (5 tools)</summary>
+<br>
+mimikatz · msfvenom · chisel · ligolo-ng · beef
+</details>
+
+<details>
 <summary><strong>MISC</strong> (4 tools)</summary>
 <br>
 arping · windows-binaries · webshells · laudanum
@@ -264,15 +302,14 @@ sudo python3 install.py
 
 # Launchers installed:
 /usr/bin/neferax      # CLI
-/usr/bin/neferax       # Alias
-/usr/bin/neferax   # TUI
+/usr/bin/neferax-tui   # TUI
 ```
 
 ### Manual
 ```bash
 sudo ln -s /usr/share/neferax/neferax_cli.py /usr/bin/neferax
 sudo ln -s /usr/share/neferax/neferax_cli.py /usr/bin/neferax
-sudo ln -s /usr/share/neferax/neferax.py /usr/bin/neferax
+sudo ln -s /usr/share/neferax/neferax_tui.py /usr/bin/neferax-tui
 ```
 
 ---
@@ -288,8 +325,8 @@ sudo ln -s /usr/share/neferax/neferax.py /usr/bin/neferax
 
 ##   Roadmap
 
-- [x] 114 tools across 14 categories
-- [x] 14 attack chains with aggregated HTML reports
+- [x] 148 tools across 14 categories
+- [x] 19 attack chains with aggregated HTML reports
 - [x] Permission-aware execution (auto-sudo)
 - [x] Attack method tagging and filtering
 - [ ] Parallel multi-target execution
