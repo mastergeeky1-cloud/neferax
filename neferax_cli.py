@@ -602,6 +602,69 @@ tool("ligolo-ng","ligolo-ng -connect <target>:<port>","attacking","Advanced tunn
 tool("beef","beef-xss","attacking","Browser exploitation framework",
      methods=["xss","hook","browser_exploit","phishing","module_based"])
 
+
+# ── GAME HACKING ──
+tool("frida","frida <target>","game","Dynamic instrumentation toolkit for games & apps",
+     methods=["memory_scan","hook","trace","runtime_inject","bypass"])
+tool("frida-tools","frida-trace <target>","game","Frida tracing utilities",
+     methods=["trace","function_hook","api_monitor","game_hack"])
+tool("x64dbg","x64dbg <exe>","game","Windows debugger for game reverse engineering (Wine)",
+     methods=["debug","disasm","memory_edit","breakpoint","step"], sudo=True)
+tool("cheatengine","cheatengine","game","Memory scanner/editor for game hacking (Wine)",
+     methods=["memory_scan","value_search","pointer_scan","speed_hack","code_inject"], sudo=True)
+tool("gameconqueror","gameconqueror","game","Linux memory scanner for game cheating",
+     methods=["memory_scan","value_search","pointer_scan","game_hack"])
+tool("reclass","reclass","game","Memory class browser for game reversing (Wine)",
+     methods=["memory_browser","class_inspect","vtable_analyze","game_reverse"])
+
+# ── DEEP PE / BINARY ──
+tool("upx","upx <exe>","pe","Ultimate Packer for eXecutables (pack/unpack PE/ELF)",
+     methods=["pack","unpack","compress","obfuscate","anti_reverse"])
+tool("pev","pev <exe>","pe","PE analysis toolkit (pescan, peinfo, pedump)",
+     methods=["pe_analysis","pe_info","pe_scan","section_analyze","import_enum"])
+tool("pedump","pedump <exe>","pe","PE dump utility - extract PE structures",
+     methods=["pe_dump","section_dump","resource_extract","import_dump","export_enum"])
+tool("de4dot","de4dot <exe>","pe",".NET deobfuscator (deobfuscate obfuscated .NET assemblies)",
+     methods=["deobfuscate","net_unpack","string_decrypt","control_flow_restore"])
+tool("ilspy","ilspy <exe>","pe",".NET decompiler (ILSpy CLI)",
+     methods=["net_decompile","il_analyze","metadata_view","resource_extract"])
+tool("processdump","procdump <pid>","pe","Process memory dumper for PE extraction",
+     methods=["process_dump","memory_extract","pe_dump","malware_analyze"], sudo=True)
+
+# ── ADVANCED WEB ──
+tool("feroxbuster","feroxbuster -u <target>","web","Rust web directory buster (fast)",
+     methods=["dir_brute","fuzz","content_discovery","recursive_scan"])
+tool("katana","katana -u <target>","web","Web crawler (projectdiscovery)",
+     methods=["web_crawl","spider","endpoint_extract","js_analyze","form_extract"])
+tool("dalfox","dalfox url <target>","web","Parameter analysis and XSS scanner",
+     methods=["xss","param_analyze","dom_based","blind_xss","waf_bypass"])
+tool("xsstrike","xsstrike -u <target>","web","Advanced XSS detection suite",
+     methods=["xss","fuzz","waf_detect","payload_gen","crawl"])
+tool("arjun","arjun -u <target>","web","HTTP parameter discovery tool",
+     methods=["param_discover","http_param","api_enum","brute_param"])
+tool("smuggler","smuggler -u <target>","web","HTTP request smuggling detection",
+     methods=["http_smuggle","request_smuggle","cl_te","te_cl","waf_bypass"])
+tool("jwt_tool","jwt_tool <token>","web","JWT security testing toolkit",
+     methods=["jwt_attack","token_forge","alg_confusion","key_brute","none_bypass"])
+tool("gau","gau <domain>","web","Get All URLs - fetch known URLs from web archives",
+     methods=["url_gather","osint","endpoint_extract","passive_recon"])
+tool("waybackurls","waybackurls <domain>","web","Wayback Machine URL fetcher",
+     methods=["url_gather","osint","endpoint_discover","archive_scan"])
+tool("gf","gf <pattern>","web","Grep patterns for web vulnerability matching",
+     methods=["pattern_match","vuln_search","xss_grep","sqli_grep","ssrf_grep"])
+
+# ── DDOS / STRESS TESTING ──
+tool("slowloris","slowloris <target>","ddos","Slow HTTP DoS attack (keep connections open)",
+     methods=["slow_dos","http_dos","low_bandwidth","connection_exhaust"], sudo=True)
+tool("golden-eye","golden-eye <target>","ddos","HTTP DoS tool (keep-alive connection flood)",
+     methods=["http_dos","keep_alive_flood","connection_exhaust"], sudo=True)
+tool("thc-ssl-dos","thc-ssl-dos <target>","ddos","SSL/TLS DoS attack (handshake exhaustion)",
+     methods=["ssl_dos","tls_exhaust","handshake_flood","crypto_attack"], sudo=True)
+tool("torshammer","torshammer -t <target>","ddos","Tor-based HTTP DoS (anonymous DoS via Tor)",
+     methods=["http_dos","tor_dos","anonymous_dos","slow_dos"], sudo=True)
+tool("hulk","hulk <target>","ddos","HULK DoS - web server flood with unique payloads",
+     methods=["http_dos","payload_flood","unique_requests","cache_bypass"])
+
 # ── Categories ─────────────────────────────────────────────────────────
 CATS = [
     ("RECON",    [n for n,v in TOOLS.items() if v["cat"]=="recon"]),
@@ -624,6 +687,8 @@ CATS = [
     ("MEMORY",   [n for n,v in TOOLS.items() if v["cat"]=="memory"]),
     ("SCANNING", [n for n,v in TOOLS.items() if v["cat"]=="scanning"]),
     ("ATTACKING",[n for n,v in TOOLS.items() if v["cat"]=="attacking"]),
+    ("GAME",     [n for n,v in TOOLS.items() if v["cat"]=="game"]),
+    ("DDOS",     [n for n,v in TOOLS.items() if v["cat"]=="ddos"]),
 ]
 
 CHAINS = {
@@ -645,7 +710,10 @@ CHAINS = {
     "memory":   ("Memory forensics & hacking",                       ["volatility","volatility3","avml","lime","scanmem","memdump","gcore"]),
     "scanning": ("Advanced scanning (RustScan, ZMap, ZGrab)",        ["rustscan","zmap","zgrab","crackmapexec","impacket"]),
     "attack":   ("Advanced attacking (mimikatz, msfvenom, tunnels)", ["mimikatz","msfvenom","chisel","ligolo-ng","beef"]),
-    "full":     ("Full attack chain (all categories)",               []),
+    "game":     ("Game hacking & reverse engineering",                ["frida","frida-tools","x64dbg","cheatengine","gameconqueror","reclass"]),
+    "web-deep": ("Deep web application testing",                        ["feroxbuster","katana","dalfox","xsstrike","arjun","smuggler","jwt_tool","gau","waybackurls","gf"]),
+    "ddos":     ("DDoS stress testing suite",                           ["slowloris","golden-eye","thc-ssl-dos","torshammer","hulk"]),
+    "full":     ("Full attack chain (all categories)",                  []),
 }
 
 # ── Chain Runner ───────────────────────────────────────────────────────

@@ -75,6 +75,8 @@ TOOLS_BY_CAT = {
     "Memory": ["volatility","volatility3","avml","lime","scanmem","memdump","gcore"],
     "Scanning": ["rustscan","zmap","zgrab","crackmapexec","impacket"],
     "Attacking": ["mimikatz","msfvenom","chisel","ligolo-ng","beef"],
+    "Game": ["frida","frida-tools","x64dbg","cheatengine","gameconqueror","reclass"],
+    "DDoS": ["slowloris","golden-eye","thc-ssl-dos","torshammer","hulk"],
 }
 
 TOOL_META = {
@@ -234,6 +236,33 @@ TOOL_META = {
     "chisel": ("Chisel","Fast TCP/UDP tunnel","chisel client <target>:<port>"),
     "ligolo-ng": ("Ligolo-ng","Tunneling proxy","ligolo-ng -connect <target>:<port>"),
     "beef": ("BeEF","Browser exploitation framework","beef-xss"),
+    "frida": ("Frida","Dynamic instrumentation","frida <target>"),
+    "frida-tools": ("Frida-tools","Frida tracing","frida-trace <target>"),
+    "x64dbg": ("x64dbg","Windows debugger","x64dbg <exe>"),
+    "cheatengine": ("Cheat Engine","Memory scanner","cheatengine"),
+    "gameconqueror": ("Game Conqueror","Memory scanner","gameconqueror"),
+    "reclass": ("ReClass","Memory class browser","reclass"),
+    "upx": ("UPX","Packer for executables","upx <exe>"),
+    "pev": ("Pev","PE analysis toolkit","pev <exe>"),
+    "pedump": ("Pedump","PE dump utility","pedump <exe>"),
+    "de4dot": ("De4dot",".NET deobfuscator","de4dot <exe>"),
+    "ilspy": ("ILSpy",".NET decompiler","ilspy <exe>"),
+    "processdump": ("Process Dump","Memory dumper","procdump <pid>"),
+    "feroxbuster": ("Feroxbuster","Rust web dir buster","feroxbuster -u <target>"),
+    "katana": ("Katana","Web crawler","katana -u <target>"),
+    "dalfox": ("Dalfox","XSS scanner","dalfox url <target>"),
+    "xsstrike": ("XSStrike","XSS detection","xsstrike -u <target>"),
+    "arjun": ("Arjun","HTTP parameter discovery","arjun -u <target>"),
+    "smuggler": ("Smuggler","HTTP smuggling","smuggler -u <target>"),
+    "jwt_tool": ("JWT Tool","JWT testing","jwt_tool <token>"),
+    "gau": ("Gau","Get All URLs","gau <domain>"),
+    "waybackurls": ("Waybackurls","Wayback Machine URLs","waybackurls <domain>"),
+    "gf": ("Gf","Grep patterns","gf <pattern>"),
+    "slowloris": ("Slowloris","Slow HTTP DoS","slowloris <target>"),
+    "golden-eye": ("Golden Eye","HTTP DoS","golden-eye <target>"),
+    "thc-ssl-dos": ("THC-SSL-DoS","SSL/TLS DoS","thc-ssl-dos <target>"),
+    "torshammer": ("Torshammer","Tor HTTP DoS","torshammer -t <target>"),
+    "hulk": ("HULK","Web flood","hulk <target>"),
 }
 
 def build_category(name, icon, tool_names):
